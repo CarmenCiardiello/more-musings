@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "more-musings"
+  title: "Sports Musings"
   navbar:
     right:
       - about.qmd
@@ -10,6 +10,8 @@ website:
         href: https://github.com/CarmenCiardiello/more-musings
       - icon: twitter
         href: https://twitter.com/cdciardiello
+      - icon: linkedin
+        href: https://www.linkedin.com/in/carmen-ciardiello-01522913a/
 format:
   html:
     theme: minty
