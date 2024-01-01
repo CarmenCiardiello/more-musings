@@ -1,5 +1,5 @@
 ---
-title: "more-musings"
+title: "Sporting Musings"
 listing:
   contents: posts
   sort: "date desc"

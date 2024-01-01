@@ -7,12 +7,12 @@ website:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
+        href: https://github.com/CarmenCiardiello/more-musings
       - icon: twitter
-        href: https://twitter.com
+        href: https://twitter.com/cdciardiello
 format:
   html:
-    theme: cosmo
+    theme: minty
     css: styles.css
 
 
