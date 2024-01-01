@@ -12,6 +12,8 @@ website:
         href: https://twitter.com/cdciardiello
       - icon: linkedin
         href: https://www.linkedin.com/in/carmen-ciardiello-01522913a/
+      - icon: archive
+        href: https://sabermetricmusings.blogspot.com/
 format:
   html:
     theme: minty
