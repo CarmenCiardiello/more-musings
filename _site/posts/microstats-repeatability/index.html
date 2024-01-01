@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Carmen Ciardiello">
+<meta name="dcterms.date" content="2024-01-01">
+
+<title>more-musings - Hockey Microstats Repeatability</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">more-musings</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/CarmenCiardiello/more-musings" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/cdciardiello" rel="" target=""><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Hockey Microstats Repeatability</h1>
+                                <div class="quarto-categories">
+                <div class="quarto-category">hockey</div>
+                <div class="quarto-category">analysis</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Carmen Ciardiello </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 1, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The proliferation of “microstats” in the public space has been a boon in our understanding of hockey players. These stats include entries/exits (the concept and tracking of which were pioneered by Eric Tulsky), entry denials, and various types of passing plays (which to my knowledge were first studied in depth by Ryan Stimson). <a href="https://twitter.com/ShutdownLine">Corey Sznajder</a> has been tracking this phylum of statistics and releasing them to the patrons of his <a href="https://www.patreon.com/data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAkCAYAAAD7PHgWAAAA00lEQVR42mNgGAWjYBQMUxAauorZLL452TyhZQUtMMhs47QGLrIdaJ7QmtSyeP+5fTc//N98+e1/agGQWSvOvPqfNGHnRbO4lnjyHRjfvHzvzff/Zx5+/r9x60OqORBkFgg3bHnw1yy+ZQkFIdiyAuRbmIHUdiAIg+wYdeCoA0cdOOrAUQdSyYG0wKMOHHUgOQ6kNGOMOhCXpaMOHHXgiHTgSmDva9A6ENRvTejfcYFWDkzs33kBZAfZDvTMncQO6huDup+06rhbhvZxjg6RjILBDgAZYqbbTdtPRgAAAABJRU5ErkJggg==CSznajder">All Three Zones</a> project for public consumption and analysis. Corey has been an invaluable in increasing our understanding of the various skills players display while on the ice and his data is readily available for public-facing analysts to dig into.</p>
+<p>These statistics can tell us why or how a player comes about his production. But they do not approximate player value on their own. Jack Fraser, <a href="https://jfresh.substack.com/p/how-should-we-interpret-microstats">in a newsletter post from several years ago</a>, cautions people in using microstats to assess player ability. He stresses that these measures events, what actually is happening on the ice. We know that at the team level certain passing plays and transition into and out of the neutral zone are indicators of successfully driving goal differential and generation from the work of Tulsky and Stimson. At the player level this is not necessarily true. There are plenty of players who are not tasked with transporting the puck up the ice that provide significant value to their clubs. Look no further than Jason Robertson. A player not necessarily the most fleet of foot, Robertson defers these responsibilities to his more dynamic linemates (most notably Roope Hintz) and does his part by making himself available to receive passes in the offensive zone, where he can then put shots on net or parley the reception into another pass in the offensive zone to scramble the opposition. I think any fan or analyst following the NHL the past few years would agree that Robertson is one of the better wingers in the league, but he certainly does not stand out when looking at Corey’s tracking of transition plays. At the other end of the spectrum, successfully generating exits and entries is not a one way ticket for effectiveness. Look no further than Max Domi.</p>
+<p>All of this is to say is that these tracked statistics are not the be all and end all in evaluating hockey players. There are skills that are clearly not captured that help players drive goal differentials for their team. I will say that if a player stands out in all or most of the tracking statistics, there is a decent chance that player is doing something right; but not definitively.</p>
+<p>That is my preamble and at some point I would like to look deeper into the relationships between microstats and player impact. I have some projects in the works that will hopefully help bridge this gap, such as leveraging the play-by-play tracking data Corey provides to see its effects on expected goal generation, but that is for another time (hopefully). For now, one item that interests me is the consistency of these stats year over year for players that change teams. I alluded to the fact that these measures are dependent on a player’s role to some extent. A player like Connor McDavid would likely find himself carrying the puck a ton no matter the team he played for, but that is an extreme case. Most players would be heavily influenced by their team context and correspondingly would see shifts in their microstats output should they change teams. At least that is my hypothesis. Luckily this can be tested. I know some work has been done by <a href="https://hockey-graphs.com/2017/08/10/measuring-the-importance-of-individual-player-zone-entry-creation/">Charlie O’Connor</a> and <a href="https://hockey-graphs.com/2015/06/25/individual-skill-coachingsystems-or-randomness-what-is-driving-open-play-results-in-the-offensive-defensive-and-neutral-zones/">Garik16</a> looking at the intra-season stability of entry and exit proclivity. I am not aware, however, of analysis that has been at players looking at inter-season consistency, let alone players that change teams. So that is what I am going to do here.</p>
+<p>Before a start, I should note a few caveats. Corey does not track every minute of every shift that a player has at 5v5. He is one person, that would be impossible. This will be have to be a source of noise that we will accept when looking at the results. I am choosing to use a 100 minute cutoff for each seasonal pair (i.e.&nbsp;the player has at least 100 minutes tracked at 5v5 in each season). The other main caveat is that I am not taking into account the effects associated with aging. I would imagine, like any other statistics imaginable, that microstats are subject to aging curves. For those curious, I will include some aging curves at the end for the metrics I believe are most consistent across seasons. Finally, I am only using data from the 2017 through the 2020 season because Corey has each of the metrics summarized in a nicely organized spreadsheet. I wanted to get this analysis out there so I did not feel like spending the time it would require to go through the raw play-by-play logs creating the requisite summaries for the 2021 through 2023 seasons. If any of Corey’s patreons (or Corey himself) are aware of a spreadsheet with all of the statistics summarized for the other seasons, let me know and I can rerun my code including the more recent data.</p>
+<p>Now let us look at the results. Based on the criteria I set, there are 1632 eligible player-season pairs. Of those 1632 pairs, 1262 are of players who played on the same team year over year (and thus, 370 who changed clubs). 1062 players in the set are classified as forwards and the remaining 570 are defensemen. The following represents the year over year correlations between various statistics tracked by Corey, split up by whether the player in question changed teams year over year.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="1920"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<p>First up are the forwards, with the chart on the left representing forwards who changed teams in between seasons and the chart on the right representing players who were on the same team season over season. Players who stayed put, unsurprisingly, have the higher year over year correlations across the board. These stats (and really all measures of player actions/performance) are some mixture of player skill and context/role. Naturally we want to tease out and isolate player skill, but these measures are undoubtedly influenced by a player’s teammates and the role which his coach asks him to take on.</p>
+<p>The stats related to transition (exits/entries) are most stable year over year as are the more general measures for passing plays and shot attempts tracked. As the specificity of the offensive play type increases, the correlations decrease given we are dealing with a smaller sample relative to the total sample for shots and passes. The stats tracked covering actions in the defensive zone are basically noise for forwards; these actions are extremely infrequent.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="1920"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid" width="1920"></p>
+</div>
+</div>
+<p>These charts for defenders are oriented in the same way as their forward counterparts; players who changed teams on the left, the rest on the right. Similar to the forwards, the transition stats are stickier; more specifically, the transition stats related to exits. Defenders are much more involved in moving the puck out of their own zone relative to their responsibility for gaining entry into the offensive zone. This will naturally lead to a stronger year over year relationship given this is a responsibility that is more uniformly shared across team contexts whereas the role defenders play in their team’s offensive attack is more variable depending on team structure and coaching. Defenders show much smaller correlations for offensive play-types. As alluded to above, they are less involved offensively and thus we are looking at a smaller sample of plays across seasons. This is also most likely the result of defenders having less control over offensive play than forwards.</p>
+<p>For the analysis on the whole, it is worth pointing out that we are looking at correlations (<span class="math inline">\(R\)</span>), not coefficients of determination (<span class="math inline">\(R^{2}\)</span>). The latter represents the proportion of one measure that can explain the other’s (in this case seasons N and N+1) variance. Thus, a correlation of approximately 0.707 (<span class="math inline">\(\frac{1}{\sqrt{2}}\)</span>) would mean that the prior season’s values explain half the variance in the current season. Take a gander at the prior two charts. Very few measures for both player types reach that 50% threshold. Correlations of about 0.316 would indicate just a 10% <span class="math inline">\(R^{2}\)</span>. Arbitrary endpoints and whatnot, but no matter how we slice it there’s very little signal year over year signal, especially for players who change teams. We can conclude that much of these microstats are more descriptive than prescriptive and we should be paying most attention to entries/exits at a high level, shot and passing generation on the whole (i.e.&nbsp;without segmenting by type). That is not to tracking these play types and entry defense is not important in our understanding of the game; there is plenty of research that shows these are essential to goal generation and prevention. Moreover, for individual players, it seems that many of them do not represent repeatable skill across seasons and are highly dependent on team context and good old-fashioned variance.</p>
+<p>Finally, I will leave you with some aging curves for the more stable metrics. If there are any metrics not included here, feel free to contact me and I can product those on your behalf.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-4-7.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
