@@ -1,0 +1,329 @@
+---
+title: "Developing a Predictive wOBA Measure"
+author: "Carmen Ciardiello"
+date: "2024-01-03"
+categories: [baseball, analysis]
+---
+
+```{r}
+#| include: false
+#| warning: false
+#| echo: false
+
+# load in necessary libraries
+library(tidyverse)
+library(tidymodels)
+library(duckdb)
+library(DBI)
+library(dbplyr)
+library(gt)
+library(cbbdata)
+library(reactable)
+library(finetune)
+library(future)
+library(vip)
+
+# read in duckdb database
+# con_read <- dbConnect(duckdb(), "statcast.duckdb")
+con_read <- dbConnect(duckdb(), "~/OneDrive/Documents/R Work/MLB/duckdb data/statcast.duckdb")
+```
+Recently I read a [blog post from Tom Tango](http://tangotiger.com/index.php/site/comments/introducing-predictive-woba) at his personal site where he constructs a more predictive version of wOBA. I encourage you to give it a read, but I will quickly try to summarize his points and findings for those of you who may not have the time. He makes note of how xwOBA as found on Baseball Savant should be used: as an estimate for current wOBA based only on exit velocity and launch angle. He points out that this measure is often misinterpreted by public fans and analysts alike; it was/is not a prediction for future wOBA. Tango then goes on to construct a crude predictive wOBA (which is meant to be a player's "true talent") by bucketing batted balls by exit velocity and launch angle, taking the average wOBA of each bucket (which he refers to as the predictive wOBA for each bucket), and aggregates those values based on frequency for each player season. In the end, this measure proves to have a stronger correlation to the next season's wOBA compared to both wOBA on its own and xwOBA. He concludes the post saying this method can be improved upon by incorporating the total batted balls in the sample, since one can surmise that the outcomes are more indicative of talent as the sample of batted balls increases.  
+
+So I attempted to do just that, with a slight twist by incorporating some more advanced modeling techniques. I started off with taking each player season since 2015 (the advent of publicly available batted ball information), bucketing the batted ball information as Tango did in his post, and adding some other measures. For those of you who did not read Tango's original post, here is a key for how each batted ball is classified: 
+
+```{r}
+#| warning: false
+#| echo: false
+
+# query for all batted balls since 2015 in the regular season and bucket based on EV and LA
+bbe <- tbl(con_read, "statcast_data") %>% 
+  filter(type == "X", game_type == "R", game_year >= 2015, 
+         is.na(launch_angle) == FALSE, is.na(launch_speed) == FALSE) %>% 
+  mutate(
+    under_95 = ifelse(launch_speed <= 95, 1, 0), 
+    btw_100_95 = ifelse(launch_speed > 95 & launch_speed <= 100, 1, 0), 
+    btw_105_100 = ifelse(launch_speed > 100 & launch_speed <= 105, 1, 0), 
+    over_105 = ifelse(launch_speed > 105, 1, 0), 
+    under_8 = ifelse(launch_angle <= 8, 1, 0), 
+    btw_32_8 = ifelse(launch_angle > 8 & launch_angle <= 32, 1, 0), 
+    over_32 = ifelse(launch_angle > 32, 1, 0)
+  ) %>% 
+  mutate(bucket_num = case_when(
+    
+    under_95 == 1 & over_32 == 1 ~ "bucket_1",
+    under_95 == 1 & btw_32_8 == 1 ~ "bucket_2",
+    under_95 == 1 & under_8 == 1 ~ "bucket_3",
+    btw_100_95 == 1 & over_32 == 1 ~ "bucket_4",
+    btw_100_95 == 1 & btw_32_8 == 1 ~ "bucket_5",
+    btw_100_95 == 1 & under_8 == 1 ~ "bucket_6",
+    btw_105_100 == 1 & over_32 == 1 ~ "bucket_7",
+    btw_105_100 == 1 & btw_32_8 == 1 ~ "bucket_8",
+    btw_105_100 == 1 & under_8 == 1 ~ "bucket_9",
+    over_105 == 1 & over_32 == 1 ~ "bucket_10",
+    over_105 == 1 & btw_32_8 == 1 ~ "bucket_11",
+    over_105 == 1 & under_8 == 1 ~ "bucket_12"
+    
+  ))
+
+# create a table for a key that designated the properties of the BBEs in each bucket
+bucket_key <- tibble(
+  bucket_num = seq(from = 1, to = 12, by = 1), 
+  exit_velo = c("95 and Under", "95 and Under", "95 and Under", "Between 100 and 95", 
+                "Between 100 and 95", "Between 100 and 95", "Between 105 and 100", 
+                "Between 105 and 100", "Between 105 and 100", "Over 105", 
+                "Over 105", "Over 105"), 
+  launch_angle = c("Over 32", "Between 32 and 8", "Under 8", 
+                   "Over 32", "Between 32 and 8", "Under 8", 
+                   "Over 32", "Between 32 and 8", "Under 8", 
+                   "Over 32", "Between 32 and 8", "Under 8")
+)
+
+bucket_key %>% 
+  gt() %>% 
+  gt_theme_athletic() %>% 
+  cols_label(
+    bucket_num = "Bucket #", 
+    exit_velo = "Exit Velocity Range (mph)", 
+    launch_angle = "Launch Angle Range ({{:degrees:}})"
+  ) %>% 
+  tab_source_note(source_note = "Table theme via cbbdata")
+
+```
+And here is a sortable table with the data I am using for the model, which includes all players who recorded a batted ball. I will account for this information in the modeling process. 
+```{r}
+#| warning: false
+#| echo: false
+
+# organize player data
+
+# get frequency of batted ball buckets by batter and season
+player_bbe <- bbe %>% 
+  group_by(batter, player_name, game_year, bucket_num) %>% 
+  summarise(n = n()) %>%
+  ungroup() %>% 
+  group_by(batter, player_name, game_year) %>% 
+  mutate(bucket_pct = n/sum(n)) %>% 
+  collect()
+
+# get total BBEs for each player
+total_bbe <- player_bbe %>% 
+  ungroup() %>% 
+  group_by(batter, player_name, game_year) %>% 
+  summarise(bbe_n = sum(n))
+
+# merge BBE bucket and total BBE info and filter by players with at least 50 BBEs
+# turn NAs into zero
+df <- player_bbe %>% 
+  select(-n) %>% 
+  left_join(total_bbe, join_by(batter, player_name, game_year)) %>% 
+  pivot_wider(id_cols = c(batter, player_name, game_year, bbe_n), 
+              names_from = bucket_num, values_from = bucket_pct) %>% 
+  mutate_if(is.numeric, ~replace(., is.na(.), 0))
+
+# get woba and wobacon values for each player in each season
+wobas <- tbl(con_read, "statcast_data") %>% 
+  filter(game_type == "R", game_year >= 2015, woba_denom == 1, 
+         events != "ejection", events != "game_advisory") %>% 
+  mutate(k = ifelse(str_detect(events, "strikeout"), 1, 0), 
+         bb = ifelse(str_detect(events, "walk"), 1, 0), 
+         hbp = ifelse(str_detect(events, "hit_by_pitch"), 1, 0)) %>% 
+  group_by(batter, player_name, game_year) %>% 
+  summarise(k_rate = sum(k)/n(), 
+            bb_rate = sum(bb)/n(), 
+            hbp_rate = sum(hbp)/n(), 
+            woba = mean(woba_value), 
+            wobacon = mean(woba_value[type == "X"])) %>% 
+  collect()
+
+# join all the player information  
+tib <- df %>% 
+  left_join(wobas, join_by(batter, player_name, game_year)) %>% 
+  relocate(batter:bbe_n, k_rate:wobacon)
+
+# get the woba for the following year
+tib_next <- tib %>% 
+  mutate(game_year = game_year - 1) %>% 
+  select(batter, player_name, game_year, woba, bbe_n) %>% 
+  rename(woba_next = woba, bbe_next = bbe_n)
+
+# join following year woba value to current year data
+tib <- tib %>% 
+  left_join(tib_next, join_by(batter, player_name, game_year))
+
+# create searchable and filterable table with all of the player data
+reactable(tib %>% mutate(across(.cols = k_rate:last_col(), round, 3)), 
+          filterable = TRUE, 
+          columns = list(
+            player_name = colDef(width = 110), 
+            game_year = colDef(width = 110)
+        )
+)
+
+```
+
+We have the data in hand, now we can model. The model will incorporate strikeout rates, walk rates, hit by pitch rates, the number of batted balls, the the frequency with which each player's batted balls fall into the 12 aforementioned buckets. The target is going to be the following the player's following season wOBA. I am going to use an `XGBoost` model for the regression and will tune the hyperparameters using a [simulated annealing process](https://finetune.tidymodels.org/reference/tune_sim_anneal.html) from the handy `finetune` package. Let's see how it looks: 
+
+```{r}
+
+#| warning: false
+#| cache: true
+
+# preparing the data for modeling
+tib <- tib %>% 
+  mutate(bbe_n = importance_weights(bbe_n)) %>% 
+  filter(is.na(woba_next) == FALSE)
+
+mod_tib <- tib %>% 
+  ungroup() %>% 
+  select(-player_name, -batter, -game_year, -woba, -wobacon, -bbe_next)
+
+player_split <- initial_split(mod_tib, prop = 0.8)
+
+woba_recipe <- recipe(woba_next ~ ., data = mod_tib) %>% 
+  step_normalize() %>% 
+  prep()
+
+# defining modeling workflow
+xgb_spec <- boost_tree(
+  trees = tune(), 
+  tree_depth = tune(),
+  mtry = tune(),
+  learn_rate = tune()
+      ) %>% 
+  set_engine("xgboost") %>% 
+  set_mode("regression")
+
+xgb_wf <- workflow() %>%
+  add_recipe(woba_recipe) %>% 
+  add_model(xgb_spec) %>% 
+  add_case_weights(bbe_n)
+
+# creating cross-validation folds
+folds <- vfold_cv(training(player_split), v = 5)
+
+# tune the model with a simulated annealing process
+plan(multisession)
+
+woba_search <- xgb_wf %>% 
+  tune_sim_anneal(
+    resamples = folds,
+    iter = 30, 
+    param_info = parameters(xgb_wf) %>% update(mtry = mtry( c(1, 15) ) ),
+    control = control_sim_anneal(verbose_iter = TRUE, allow_par = TRUE)
+  )
+
+plan(NULL)
+
+autoplot(woba_search, metric = "rmse", type = "performance") +
+    theme_bw()
+
+
+
+
+```
+
+Looks like diminishing returns as time went along, with a few outliers thrown in. Here are the five best models trained (based on RMSE): 
+
+```{r}
+#| warning: false
+#| echo: false
+
+woba_search %>% 
+  show_best("rmse") %>% 
+  select(-.metric, -.estimator, -.config) %>% 
+  rename(rsme = mean, 
+         iter = .iter) %>% 
+  gt() %>% 
+  gt_theme_athletic()
+
+
+```
+
+We have our list of models, so now we can select the best performing set of hyperparameters and get a final fit with feature importances.
+
+```{r}
+
+best_mod <- woba_search %>% 
+  select_best("rmse")
+
+final_wf <- xgb_wf %>% 
+  finalize_workflow(best_mod)
+
+final_fit <- final_wf %>% 
+  last_fit(player_split)
+
+final_woba_mod <- extract_workflow(final_fit)
+
+final_woba_mod %>% 
+  extract_fit_parsnip() %>% 
+  vip() + 
+  theme_bw()
+
+```
+
+Strikeout rate is the most important feature in the model, followed by five features closely clustered together: walk rate and the frequency of buckets 3, 7, 8, and 11. Recall the key I provided above; bucket 3 corresponds to softly hit groundballs, bucket 7 solidly struck fly balls, bucket 8 solidly struck balls in the "sweet spot", and bucket 11 the hardest hit batted balls in the "sweet spot" range. What can we draw from this? Plate skills (in the form of strikeout and walk rates) are extremely important in predicting next season's wOBA for a player because, getting on base is good (shocker) and maximizing walks and minimizing strikeouts lead to getting on base. Second, those measures are incredibly stable year over year relative to other measures of player performance. As for the batted balls, it seems based on this analysis that avoiding poor contact on the ground, middling contact in the air that is likely to be caught be outfielders, and making hard contact at ideal launch angles is the best way to maximize production on contact. Nothing groundbreaking here, but it is nice to see that play out when analyzing the model.  
+
+Finally we get to the models viability. The number to beat here is a $R^2$ of 0.3704 with players who recorded 100 batted balls in both seasons (based on Tango's blog post). How does this new model compare?
+
+```{r}
+
+#| warning: false
+
+eval_tib <- tib %>% 
+  bind_cols(predict(final_woba_mod, new_data = tib)) %>% 
+  filter(is.na(woba_next) == FALSE) %>% # remove players who do not have a following season
+  rename(predicted_woba_next = .pred)
+
+# r-squared without filtering for guys with 100 BBEs
+print(
+  paste("The coefficient of determination for the relationship between predicted and actual next season wOBA is", 
+  cor(eval_tib$woba_next, eval_tib$predicted_woba_next)^2 %>% round(digits = 4), 
+  sep = " "
+  )
+)
+
+# filter for guys with 100 BBEs
+print(
+  paste("The coefficient of determination for the relationship between predicted and actual next season wOBA for players with 100 BBEs in each season is", 
+  cor(eval_tib %>% filter(bbe_n >= 100, bbe_next >= 100) %>% .$woba_next, 
+      eval_tib %>% filter(bbe_n >= 100, bbe_next >= 100) %>% .$predicted_woba_next)^2 %>% 
+    round(digits = 4), 
+  sep = " "
+  )
+)
+
+```
+Not bad (especially considering I did include any information about park factors or aging)! We cleared the bar that Tango set in his post before filtering for players with 100 batted balls, though obviously the degree of rigor with which I approached the problem was much different than Tom's (who was concerned more presenting the concept of a predictive wOBA measure). He also did not incorporate walk or strikeout rates which feature prominently in this model. Nevertheless, I think this exercise here was a reasonable method of picking up where Tango left off by leveraging some more powerful modeling techniques. Just as important as being a good predictor of the future, analyzing the model yielded some important (though not necessarily novel) conclusions; mainly hitting the ball on the ground softly is bad, hitting fly balls that outfielders can easily catch is bad, and hitting the ball hard at optimal launch angles is the best way to ensure batted ball success.  
+
+There is one last note I want to make. I know there is some quibbling in the public space about not incorporating batted ball direction (in terms of spray angle) into a wOBA model. I would say two things can be true at the same time. The first is that directly incorporating the spray angle of a batted ball might make a model's estimation of that singular batted ball more accurate, but I have found that when incorporating spray angle and aggregating the model outputs at the player level does not increase the predictiveness of the model, similar to the folks at MLBAM. That can be something I post about in the future (feel free to bother me on Twitter to get around to writing up the post). Whether this is the result of most players not being able to "cheat" their exit velocities consistently year over year by pulling the ball down the line, exit velocity and launch angle being so much more important than spray angle over time, or having a model with less parameters is going to introduce more sources of variance, I find it difficult to conclude spray angle must be included to make a batted ball model viable over a sufficient sample. At some point I plan at looking a pull rates, their repeatability, and how much control batters have over them (pitch location has some bearing on whether a ball is pulled as does how far in front of the plate the batter makes contact. Unfortunately the latter data is not available publicly). 
+
+Now the second thing: spray angle does have some effect on exit velocity. Pulled balls result in higher exit velocities for a given player, so those who can consistently put the ball in the air will maximize whatever power they have in the tank (see Marcus Semien or Isaac Paredes). I know [Robert Orr](https://twitter.com/NotTheBobbyOrr) has done excellent work adjusting exit velocities for spray angle, as did [Connor Kurcon](https://twitter.com/ckurcon?lang=en) before he was hired by the Astros. [Alex Chamberlain](https://twitter.com/DolphHauldhagen?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) also has written a great primer on the [relationship between exit velocity and spray angle at FanGraphs](https://blogs.fangraphs.com/now-lets-tweak-hard-hit-rate-using-spray-angle/). I think the way to bridge the gap between those concerned with ignoring spray angle and the fact that player-level predicted wOBAs seem to not be aided by the inclusion of spray angle is to incorporate exit velocities adjusted for spray angle and undergo a similar process as I have done above (add that to the list of things I want to work on). My hypothesis is that this will yield even more predictive results for player hitting skill, but I cannot know for sure until I do the work myself or someone decides to take it up themselves. 
+
+## Appendix
+
+At the end I wanted to include a table for those curious that includes wOBA, next season wOBA, and the predicted next season wOBA. I filtered for players with 50 batted ball events in each season and made it sortable and searchable.
+
+```{r}
+
+#| echo: false
+#| warning: false
+
+reactable(eval_tib %>% 
+          select(batter, player_name, game_year, bbe_n, bbe_next, woba, woba_next, predicted_woba_next) %>%   
+          filter(bbe_n >= 50, bbe_next >= 50) %>% 
+          mutate(across(.cols = woba:predicted_woba_next, round, 3)),
+          searchable = TRUE,
+          sortable = TRUE,
+          columns = list(
+            player_name = colDef(name = "Player"),
+            batter = colDef(name = "ID"), 
+            bbe_n = colDef(name = "BBE N"), 
+            bbe_next = colDef(name = "BBE N+1"), 
+            woba = colDef(name = "wOBA N"),
+            woba_next = colDef(name = "wOBA N+1"), 
+            predicted_woba_next = colDef("Pred wOBA N+1"),
+            game_year = colDef(name = "Year")
+        )
+)
+
+```
