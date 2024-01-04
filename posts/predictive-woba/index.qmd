@@ -65,6 +65,7 @@ bbe <- tbl(con_read, "statcast_data") %>%
     
   ))
 
+
 # create a table for a key that designated the properties of the BBEs in each bucket
 bucket_key <- tibble(
   bucket_num = seq(from = 1, to = 12, by = 1), 
@@ -105,6 +106,8 @@ player_bbe <- bbe %>%
   mutate(bucket_pct = n/sum(n)) %>% 
   collect()
 
+dbDisconnect(con_read, shutdown = TRUE)
+
 # get total BBEs for each player
 total_bbe <- player_bbe %>% 
   ungroup() %>% 
@@ -120,6 +123,7 @@ df <- player_bbe %>%
               names_from = bucket_num, values_from = bucket_pct) %>% 
   mutate_if(is.numeric, ~replace(., is.na(.), 0))
 
+con_read <- dbConnect(duckdb(), "~/OneDrive/Documents/R Work/MLB/duckdb data/statcast.duckdb")
 # get woba and wobacon values for each player in each season
 wobas <- tbl(con_read, "statcast_data") %>% 
   filter(game_type == "R", game_year >= 2015, woba_denom == 1, 
@@ -134,6 +138,8 @@ wobas <- tbl(con_read, "statcast_data") %>%
             woba = mean(woba_value), 
             wobacon = mean(woba_value[type == "X"])) %>% 
   collect()
+
+dbDisconnect(con_read, shutdown = TRUE)
 
 # join all the player information  
 tib <- df %>% 
@@ -164,9 +170,8 @@ reactable(tib %>% mutate(across(.cols = k_rate:last_col(), round, 3)),
 We have the data in hand, now we can model. The model will incorporate strikeout rates, walk rates, hit by pitch rates, the number of batted balls, the the frequency with which each player's batted balls fall into the 12 aforementioned buckets. The target is going to be the following the player's following season wOBA. I am going to use an `XGBoost` model for the regression and will tune the hyperparameters using a [simulated annealing process](https://finetune.tidymodels.org/reference/tune_sim_anneal.html) from the handy `finetune` package. Let's see how it looks: 
 
 ```{r}
-
 #| warning: false
-#| cache: true
+#| echo: false
 
 # preparing the data for modeling
 tib <- tib %>% 
@@ -242,6 +247,9 @@ woba_search %>%
 We have our list of models, so now we can select the best performing set of hyperparameters and get a final fit with feature importances.
 
 ```{r}
+#| echo: false
+#| warning: false
+#| include: false
 
 best_mod <- woba_search %>% 
   select_best("rmse")
@@ -253,6 +261,15 @@ final_fit <- final_wf %>%
   last_fit(player_split)
 
 final_woba_mod <- extract_workflow(final_fit)
+
+final_woba_mod <- readRDS("predictive_woba_mod.rds")
+
+
+```
+
+```{r}
+#| warning: false
+#| echo: false
 
 final_woba_mod %>% 
   extract_fit_parsnip() %>% 
@@ -266,13 +283,14 @@ Strikeout rate is the most important feature in the model, followed by five feat
 Finally we get to the models viability. The number to beat here is a $R^2$ of 0.3704 with players who recorded 100 batted balls in both seasons (based on Tango's blog post). How does this new model compare?
 
 ```{r}
-
 #| warning: false
 
 eval_tib <- tib %>% 
   bind_cols(predict(final_woba_mod, new_data = tib)) %>% 
   filter(is.na(woba_next) == FALSE) %>% # remove players who do not have a following season
   rename(predicted_woba_next = .pred)
+
+eval_tib <- eval_tib %>% mutate(bbe_n = as.double(bbe_n))
 
 # r-squared without filtering for guys with 100 BBEs
 print(
@@ -304,7 +322,6 @@ Now the second thing: spray angle does have some effect on exit velocity. Pulled
 At the end I wanted to include a table for those curious that includes wOBA, next season wOBA, and the predicted next season wOBA. I filtered for players with 50 batted ball events in each season and made it sortable and searchable.
 
 ```{r}
-
 #| echo: false
 #| warning: false
 

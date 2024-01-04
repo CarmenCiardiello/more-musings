@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/predictive-woba/index.html",
       "/posts/microstats-repeatability/index.html",
       "/posts/velocity-splits/index.html"
     ]
