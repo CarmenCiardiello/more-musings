@@ -2,7 +2,7 @@
 title: "Developing a Predictive wOBA Measure"
 author: "Carmen Ciardiello"
 date: "2024-01-03"
-categories: [baseball, analysis]
+categories: [baseball, analysis, modeling]
 ---
 
 ```{r}
