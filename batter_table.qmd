@@ -22,10 +22,10 @@ hitting_table <- tbl(con_read, "statcast_data") %>%
 # NOT GROUPING BY PITCH TYPE HERE
 hitting_table_all <- hitting_table %>% 
   mutate(swing = case_when(
-    str_detect(description, 'foul') == TRUE ~ 1, 
-    str_detect(description, 'swing') == TRUE ~ 1, 
-    str_detect(description, 'hit') == TRUE ~ 1, 
-    .default = 0),
+      str_detect(description, 'foul') == TRUE ~ 1, 
+      str_detect(description, 'swing') == TRUE ~ 1, 
+      str_detect(description, 'hit') == TRUE ~ 1, 
+      .default = 0),
     swinging_strike = ifelse(str_detect(description, 'swinging_strike') | str_detect(description, "foul_tip"), 1, 0), 
     in_zone = ifelse(zone %in% 1:9, 1, 0), 
     contact = case_when(
@@ -83,12 +83,12 @@ hitting_table_all <- hitting_table %>%
   ) %>% 
   mutate(
     ev_tile = ntile(launch_speed, 10), 
-    .by = c(batter, player_name, game_year)
+    .by = c(batter, game_year)
   ) %>% 
   mutate(ev_90 = case_when(
     ev_tile == 10 ~ launch_speed, 
     .default = NA
-  )) %>% 
+      )) %>% 
   summarise(
     n = n(),
     swstr_pct = round( mean(swinging_strike)*100, digits = 1), 
