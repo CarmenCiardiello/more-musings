@@ -15,8 +15,8 @@ website:
       - icon: archive
         href: https://sabermetricmusings.blogspot.com/
     left: 
-      - text: Home
-        file: index.qmd
+      - text: Batter Table
+        file: batter_table.qmd
 format:
   html:
     theme: minty

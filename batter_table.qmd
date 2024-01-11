@@ -1,0 +1,218 @@
+---
+title: "Batter Table"
+editor: visual
+---
+
+```{r}
+#| include: false
+
+
+library(tidyverse)
+library(duckdb)
+library(dbplyr)
+
+# CONNECT TO DATABASE
+con_read <- dbConnect(duckdb(), "~/OneDrive/Documents/R Work/MLB/duckdb data/statcast.duckdb")
+
+# GET TABLE WITH DATA FILTERED AS NEEDED
+hitting_table <- tbl(con_read, "statcast_data") %>% 
+  filter(game_type == "R", game_year >= 2015)
+
+# CREATE COLUMN FOR SWING, WHIFF AND GET PERCENTILE FOR PLAYER EXIT VELO
+# NOT GROUPING BY PITCH TYPE HERE
+hitting_table_all <- hitting_table %>% 
+  mutate(swing = case_when(
+    str_detect(description, 'foul') == TRUE ~ 1, 
+    str_detect(description, 'swing') == TRUE ~ 1, 
+    str_detect(description, 'hit') == TRUE ~ 1, 
+    .default = 0),
+    swinging_strike = ifelse(str_detect(description, 'swinging_strike') | str_detect(description, "foul_tip"), 1, 0), 
+    in_zone = ifelse(zone %in% 1:9, 1, 0), 
+    contact = case_when(
+      type == 'X' | description == 'foul' & swing == 1 ~ 1,
+      type != 'X' | description != 'foul' & swing == 1 ~ 0, 
+      .default = NA
+      ), 
+    in_play = ifelse(type == 'X', 1, 0), 
+    gb = case_when(
+      launch_angle < 10 & type == "X" ~ 1, 
+      launch_angle >= 10 & type == "X" ~ 0, 
+      .default = NA
+    ), 
+    fb = case_when(
+      launch_angle > 25 & launch_angle < 50   & type == "X" ~ 1, 
+      launch_angle < 25 & launch_angle >= 50 & type == "X" ~ 0, 
+      .default = NA
+    ),  
+    pop_up = case_when(
+      launch_angle >= 50 & type == "X" ~ 1, 
+      launch_angle < 50 & type == "X" ~ 0, 
+      .default = NA
+    ),
+    pull = ifelse(spray_angle <= -15 & stand == "R" | spray_angle >= 15 & stand == "L", 1, 0), 
+    oppo = ifelse(spray_angle >= 15 & stand == "R" | spray_angle <= -15 & stand == "L", 1, 0),
+    hard_hit = case_when(
+      launch_speed >= 95 & type == "X" ~ 1, 
+      launch_speed < 95 & type == "X" ~ 0, 
+      .default = NA
+      ), 
+    zone_swing = case_when( 
+      in_zone == 1 & swing == 1 ~ 1, 
+      in_zone == 1 & swing == 0 ~ 0, 
+      .default = NA
+      ), 
+    chase_swing = case_when( 
+      in_zone == 0 & swing == 1 ~ 1, 
+      in_zone == 0 & swing == 0 ~ 0, 
+      .default = NA
+      ),
+    zone_contact = case_when(
+      in_zone == 1 & swing == 1 & contact == 1 ~ 1, 
+      in_zone == 1 & swing == 1 & contact == 0 ~ 0, 
+      .default = NA
+      ), 
+    chase_contact = case_when(
+      in_zone == 0 & swing == 1 & contact == 1 ~ 1, 
+      in_zone == 0 & swing == 1 & contact == 0 ~ 0, 
+      .default = NA
+      ), 
+    woba_con = case_when(
+      in_play == 1 ~ woba_value, 
+      .default = NA
+    )
+  ) %>% 
+  mutate(
+    ev_tile = ntile(launch_speed, 10), 
+    .by = c(batter, player_name, game_year)
+  ) %>% 
+  mutate(ev_90 = case_when(
+    ev_tile == 10 ~ launch_speed, 
+    .default = NA
+  )) %>% 
+  summarise(
+    n = n(),
+    swstr_pct = round( mean(swinging_strike)*100, digits = 1), 
+    zone_pct = round( mean(in_zone)*100, digits = 1),
+    swing_pct = round( mean(swing)*100, digits = 1),
+    whiff_rate = round( mean( swinging_strike ) / mean( swing ) * 100, digits = 1),
+    zone_swing_pct = round( mean( zone_swing, na.rm = TRUE )*100, digits = 1), 
+    chase_pct = round( mean( chase_swing, na.rm = TRUE )*100, digits = 1), 
+    zone_contact_pct = round( mean( zone_contact, na.rm = TRUE )*100, digits = 1),
+    chase_contact_pct = round( mean( chase_contact, na.rm = TRUE )*100, digits = 1),
+    hard_hit_pct = round( mean( hard_hit, na.rm = TRUE )*100, digits = 1),
+    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
+    barrel_pct = round( sum(barrel, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1),
+    gb_pct = round( sum(gb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    fb_pct = round( sum(fb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ), 
+    pop_up_pct = round( sum(pop_up, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    pull_pct = round( sum(pull, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    oppo_pct = round( sum(oppo, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    woba = round( mean(woba_value, na.rm = TRUE), digits = 3),
+    wobacon = round( mean(woba_con, na.rm = TRUE), digits = 3),
+    .by = c(batter, player_name, game_year)
+  ) %>% 
+  mutate(pitch_type = "All") %>% 
+  relocate(batter, player_name, game_year, pitch_type) %>% 
+  collect()
+
+# MAKE SIMILAR TABLE BUT GROUP BY PITCH TYPE
+hitting_table_pitch <- hitting_table %>% 
+  mutate(swing = case_when(
+    str_detect(description, 'foul') == TRUE ~ 1, 
+    str_detect(description, 'swing') == TRUE ~ 1, 
+    str_detect(description, 'hit') == TRUE ~ 1, 
+    .default = 0),
+    swinging_strike = ifelse(str_detect(description, 'swinging_strike') | str_detect(description, "foul_tip"), 1, 0), 
+    in_zone = ifelse(zone %in% 1:9, 1, 0), 
+    contact = case_when(
+      type == 'X' | description == 'foul' & swing == 1 ~ 1,
+      type != 'X' | description != 'foul' & swing == 1 ~ 0, 
+      .default = NA
+    ), 
+    in_play = ifelse(type == 'X', 1, 0), 
+    gb = case_when(
+      launch_angle < 10 & type == "X" ~ 1, 
+      launch_angle >= 10 & type == "X" ~ 0, 
+      .default = NA
+    ), 
+    fb = case_when(
+      launch_angle > 25 & launch_angle < 50   & type == "X" ~ 1, 
+      launch_angle < 25 & launch_angle >= 50 & type == "X" ~ 0, 
+      .default = NA
+    ),  
+    pop_up = case_when(
+      launch_angle >= 50 & type == "X" ~ 1, 
+      launch_angle < 50 & type == "X" ~ 0, 
+      .default = NA
+    ),
+    pull = ifelse(spray_angle <= -15 & stand == "R" | spray_angle >= 15 & stand == "L", 1, 0), 
+    oppo = ifelse(spray_angle >= 15 & stand == "R" | spray_angle <= -15 & stand == "L", 1, 0),
+    hard_hit = case_when(
+      launch_speed >= 95 & type == "X" ~ 1, 
+      launch_speed < 95 & type == "X" ~ 0, 
+      .default = NA
+    ), 
+    zone_swing = case_when( 
+      in_zone == 1 & swing == 1 ~ 1, 
+      in_zone == 1 & swing == 0 ~ 0, 
+      .default = NA
+    ), 
+    chase_swing = case_when( 
+      in_zone == 0 & swing == 1 ~ 1, 
+      in_zone == 0 & swing == 0 ~ 0, 
+      .default = NA
+    ),
+    zone_contact = case_when(
+      in_zone == 1 & swing == 1 & contact == 1 ~ 1, 
+      in_zone == 1 & swing == 1 & contact == 0 ~ 0, 
+      .default = NA
+    ), 
+    chase_contact = case_when(
+      in_zone == 0 & swing == 1 & contact == 1 ~ 1, 
+      in_zone == 0 & swing == 1 & contact == 0 ~ 0, 
+      .default = NA
+    ), 
+    woba_con = case_when(
+      in_play == 1 ~ woba_value, 
+      .default = NA
+    )
+  ) %>% 
+  mutate(
+    ev_tile = ntile(launch_speed, 10), 
+    .by = c(batter, player_name, game_year)
+  ) %>% 
+  mutate(ev_90 = case_when(
+    ev_tile == 10 ~ launch_speed, 
+    .default = NA
+  )) %>% 
+  summarise(
+    n = n(),
+    swstr_pct = round( mean(swinging_strike)*100, digits = 1), 
+    zone_pct = round( mean(in_zone)*100, digits = 1),
+    swing_pct = round( mean(swing)*100, digits = 1),
+    whiff_rate = round( mean( swinging_strike ) / mean( swing ) * 100, digits = 1),
+    zone_swing_pct = round( mean( zone_swing, na.rm = TRUE )*100, digits = 1), 
+    chase_pct = round( mean( chase_swing, na.rm = TRUE )*100, digits = 1), 
+    zone_contact_pct = round( mean( zone_contact, na.rm = TRUE )*100, digits = 1),
+    chase_contact_pct = round( mean( chase_contact, na.rm = TRUE )*100, digits = 1),
+    hard_hit_pct = round( mean( hard_hit, na.rm = TRUE )*100, digits = 1),
+    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
+    barrel_pct = round( sum(barrel, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1),
+    gb_pct = round( sum(gb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    fb_pct = round( sum(fb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ), 
+    pop_up_pct = round( sum(pop_up, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    pull_pct = round( sum(pull, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    oppo_pct = round( sum(oppo, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
+    woba = round( mean(woba_value, na.rm = TRUE), digits = 3),
+    wobacon = round( mean(woba_con, na.rm = TRUE), digits = 3),
+    .by = c(batter, player_name, game_year, pitch_type)
+  ) %>% 
+  relocate(batter, player_name, game_year, pitch_type) %>% 
+  collect()
+
+# COMBINE THE TABLES
+hitting_table <- hitting_table_all %>%
+  bind_rows(hitting_table_pitch) %>% 
+  arrange(batter, player_name, game_year, pitch_type)
+
+```
