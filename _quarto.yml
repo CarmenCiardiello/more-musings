@@ -14,6 +14,9 @@ website:
         href: https://www.linkedin.com/in/carmen-ciardiello-01522913a/
       - icon: archive
         href: https://sabermetricmusings.blogspot.com/
+    left: 
+      - text: Home
+        file: index.qmd
 format:
   html:
     theme: minty
