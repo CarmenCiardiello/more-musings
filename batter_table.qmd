@@ -240,7 +240,7 @@ hitting_table <- hitting_table_all %>%
   mutate(across(where(is.numeric), coalesce, 0))
 
 ```
-This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type "All" into the dialog box in the type column. I recommend filtering with some minimum for number of pitches faced. All columns are sortable. 
+This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type "All" into the dialog box in the type column. All columns are sortable. 
 ```{r}
 #| echo: false
 #| warning: false
@@ -253,15 +253,16 @@ hitting_table %>%
       player_name = colDef(name = "Name", width = 150, filterable = TRUE), 
       game_year = colDef(name = "Year", filterable = TRUE, width = 80), 
       pitch_type = colDef(name = "Type", width = 80, filterable = TRUE), 
-      n = colDef(
-        width = 60,
-        filterable = TRUE,
-        filterMethod = JS("function(rows, columnId, filterValue) {
-        return rows.filter(function(row) {
-          return row.values[columnId] >= filterValue
-        })
-      }")
-      ),
+      # n = colDef(
+      #   width = 60,
+      #   filterable = TRUE,
+      #   filterMethod = JS("function(rows, columnId, filterValue) {
+      #   return rows.filter(function(row) {
+      #     return row.values[columnId] >= filterValue
+      #   })
+      # }")
+      # ),
+      n = colDef(width = 60),
       swstr_pct = colDef(name = "SwStr%", 
                          format = colFormat(digits = 1)), 
       zone_pct = colDef(name = "Zone%", 
@@ -303,10 +304,11 @@ hitting_table %>%
                      format = colFormat(digits = 1))
     ), 
     defaultPageSize = 25
-  ) %>% 
-  add_title(
-    title = "For filtering by number of pitches, type in the minimum pitches to display (NOT WORKING RIGHT NOW)", 
-    font_size = 16
-    )
+  ) 
+  #   %>% 
+  # add_title(
+  #   title = "For filtering by number of pitches, type in the minimum pitches to display (NOT WORKING RIGHT NOW)", 
+  #   font_size = 16
+  #   )
 
 ```
