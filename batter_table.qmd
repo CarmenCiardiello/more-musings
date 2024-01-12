@@ -10,6 +10,8 @@ editor: visual
 library(tidyverse)
 library(duckdb)
 library(dbplyr)
+library(reactable)
+library(reactablefmtr)
 
 # CONNECT TO DATABASE
 con_read <- dbConnect(duckdb(), "~/OneDrive/Documents/R Work/MLB/duckdb data/statcast.duckdb")
@@ -79,28 +81,19 @@ hitting_table_all <- hitting_table %>%
     woba_con = case_when(
       in_play == 1 ~ woba_value, 
       .default = NA
-    )
-  ) %>% 
-  mutate(
-    ev_tile = ntile(launch_speed, 10), 
-    .by = c(batter, game_year)
-  ) %>% 
-  mutate(ev_90 = case_when(
-    ev_tile == 10 ~ launch_speed, 
-    .default = NA
-      )) %>% 
+      )
+    ) %>% 
   summarise(
     n = n(),
     swstr_pct = round( mean(swinging_strike)*100, digits = 1), 
     zone_pct = round( mean(in_zone)*100, digits = 1),
     swing_pct = round( mean(swing)*100, digits = 1),
-    whiff_rate = round( mean( swinging_strike ) / mean( swing ) * 100, digits = 1),
+    whiff_rate = round( sum(swinging_strike) / sum(swing) * 100, digits = 1),
     zone_swing_pct = round( mean( zone_swing, na.rm = TRUE )*100, digits = 1), 
     chase_pct = round( mean( chase_swing, na.rm = TRUE )*100, digits = 1), 
     zone_contact_pct = round( mean( zone_contact, na.rm = TRUE )*100, digits = 1),
     chase_contact_pct = round( mean( chase_contact, na.rm = TRUE )*100, digits = 1),
     hard_hit_pct = round( mean( hard_hit, na.rm = TRUE )*100, digits = 1),
-    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
     barrel_pct = round( sum(barrel, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1),
     gb_pct = round( sum(gb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
     fb_pct = round( sum(fb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ), 
@@ -112,8 +105,27 @@ hitting_table_all <- hitting_table %>%
     .by = c(batter, player_name, game_year)
   ) %>% 
   mutate(pitch_type = "All") %>% 
-  relocate(batter, player_name, game_year, pitch_type) %>% 
-  collect()
+  relocate(batter, player_name, game_year, pitch_type)
+
+# EV90 Calcs
+ev90_calcs <- hitting_table %>% 
+  filter(type == "X") %>% 
+  mutate(
+    ev_tile = ntile(launch_speed, 10), 
+    .by = c(batter, player_name, game_year)
+  ) %>% 
+  mutate(ev_90 = case_when(
+    ev_tile == 10 ~ launch_speed, 
+    .default = NA
+  )) %>% 
+  summarise(
+    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
+    .by = c(batter, player_name, game_year)
+  ) %>% 
+  mutate(pitch_type = "All")
+
+hitting_table_all <- hitting_table_all %>% 
+  left_join(ev90_calcs, join_by(batter, player_name, game_year, pitch_type))
 
 # MAKE SIMILAR TABLE BUT GROUP BY PITCH TYPE
 hitting_table_pitch <- hitting_table %>% 
@@ -177,26 +189,17 @@ hitting_table_pitch <- hitting_table %>%
       .default = NA
     )
   ) %>% 
-  mutate(
-    ev_tile = ntile(launch_speed, 10), 
-    .by = c(batter, player_name, game_year)
-  ) %>% 
-  mutate(ev_90 = case_when(
-    ev_tile == 10 ~ launch_speed, 
-    .default = NA
-  )) %>% 
   summarise(
     n = n(),
     swstr_pct = round( mean(swinging_strike)*100, digits = 1), 
     zone_pct = round( mean(in_zone)*100, digits = 1),
     swing_pct = round( mean(swing)*100, digits = 1),
-    whiff_rate = round( mean( swinging_strike ) / mean( swing ) * 100, digits = 1),
+    whiff_rate = round( sum(swinging_strike) / sum(swing) * 100, digits = 1),
     zone_swing_pct = round( mean( zone_swing, na.rm = TRUE )*100, digits = 1), 
     chase_pct = round( mean( chase_swing, na.rm = TRUE )*100, digits = 1), 
     zone_contact_pct = round( mean( zone_contact, na.rm = TRUE )*100, digits = 1),
     chase_contact_pct = round( mean( chase_contact, na.rm = TRUE )*100, digits = 1),
     hard_hit_pct = round( mean( hard_hit, na.rm = TRUE )*100, digits = 1),
-    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
     barrel_pct = round( sum(barrel, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1),
     gb_pct = round( sum(gb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ),
     fb_pct = round( sum(fb, na.rm = TRUE) / sum(in_play, na.rm = TRUE) * 100, digits = 1 ), 
@@ -207,12 +210,103 @@ hitting_table_pitch <- hitting_table %>%
     wobacon = round( mean(woba_con, na.rm = TRUE), digits = 3),
     .by = c(batter, player_name, game_year, pitch_type)
   ) %>% 
-  relocate(batter, player_name, game_year, pitch_type) %>% 
-  collect()
+  relocate(batter, player_name, game_year, pitch_type)
+
+# EV90 Calcs
+ev90_calcs <- hitting_table %>% 
+  filter(type == "X") %>% 
+  mutate(
+    ev_tile = ntile(launch_speed, 10), 
+    .by = c(batter, player_name, game_year, pitch_type)
+  ) %>% 
+  mutate(ev_90 = case_when(
+    ev_tile == 10 ~ launch_speed, 
+    .default = NA
+  )) %>% 
+  summarise(
+    ev_90 = round( mean(ev_90, na.rm = TRUE), digits = 1), 
+    .by = c(batter, player_name, game_year, pitch_type)
+  )
+
+hitting_table_pitch <- hitting_table_pitch %>% 
+  left_join(ev90_calcs, join_by(batter, player_name, game_year, pitch_type))
 
 # COMBINE THE TABLES
 hitting_table <- hitting_table_all %>%
-  bind_rows(hitting_table_pitch) %>% 
-  arrange(batter, player_name, game_year, pitch_type)
+  collect() %>% 
+  bind_rows(hitting_table_pitch %>% collect()) %>% 
+  arrange(batter, player_name, game_year, pitch_type) %>% 
+  filter(pitch_type != "", pitch_type != "AB") %>% 
+  mutate(across(where(is.numeric), coalesce, 0))
+
+```
+This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type "All" into the dialog box in the type column. I recommend filtering with some minimum for number of pitches faced. All columns are sortable. 
+```{r}
+#| echo: false
+#| warning: false
+
+# CREATE REACTABLE TABLE FOR ONLINE VIEWING
+hitting_table %>% 
+  reactable(
+    columns = list(
+      batter = colDef(name = "ID", filterable = TRUE), 
+      player_name = colDef(name = "Name", width = 150, filterable = TRUE), 
+      game_year = colDef(name = "Year", filterable = TRUE, width = 80), 
+      pitch_type = colDef(name = "Type", width = 80, filterable = TRUE), 
+      swstr_pct = colDef(name = "SwStr%", 
+                         format = colFormat(digits = 1)), 
+      zone_pct = colDef(name = "Zone%", 
+                        format = colFormat(digits = 1)), 
+      swing_pct = colDef(name = "Swing%", 
+                         format = colFormat(digits = 1)), 
+      whiff_rate = colDef(name = "Whiff%", 
+                          format = colFormat(digits = 1)), 
+      zone_swing_pct = colDef(name = "ZSwing%", 
+                              format = colFormat(digits = 1)), 
+      chase_pct = colDef(name = "Chase%", 
+                         format = colFormat(digits = 1)), 
+      zone_contact_pct = colDef(name = "ZContact%",
+                                width = 130,
+                                format = colFormat(digits = 1)), 
+      chase_contact_pct = colDef(name = "OContact%", 
+                                 width = 140,
+                                 format = colFormat(digits = 1)), 
+      hard_hit_pct = colDef(name = "HH%", 
+                            format = colFormat(digits = 1)), 
+      barrel_pct = colDef(name = "Barrel%", 
+                          format = colFormat(digits = 1)), 
+      gb_pct = colDef(name = "GB%", 
+                      format = colFormat(digits = 1)), 
+      fb_pct = colDef(name = "FB%", 
+                      format = colFormat(digits = 1)), 
+      pop_up_pct = colDef(name = "PU%", 
+                          format = colFormat(digits = 1)), 
+      pull_pct = colDef(name = "Pull%", 
+                        format = colFormat(digits = 1)), 
+      oppo_pct = colDef(name = "Oppo%", 
+                        format = colFormat(digits = 1)), 
+      woba = colDef(name = "wOBA", 
+                    format = colFormat(digits = 3)), 
+      wobacon = colDef(name = "wOBACON", 
+                       width = 150,
+                       format = colFormat(digits = 3)), 
+      ev_90 = colDef(name = "EV90", 
+                     format = colFormat(digits = 1)),
+      n = colDef(
+        width = 60,
+        filterable = TRUE,
+        filterMethod = JS("function(rows, columnId, filterValue) {
+        return rows.filter(function(row) {
+          return row.values[columnId] >= filterValue
+        })
+      }")
+      )
+    ), 
+    defaultPageSize = 25
+  ) %>% 
+  add_title(
+    title = "For filtering by number of pitches, type in the minimum pitches to display", 
+    font_size = 16
+    )
 
 ```
