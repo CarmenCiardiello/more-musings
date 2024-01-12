@@ -305,7 +305,7 @@ hitting_table %>%
     defaultPageSize = 25
   ) %>% 
   add_title(
-    title = "For filtering by number of pitches, type in the minimum pitches to display", 
+    title = "For filtering by number of pitches, type in the minimum pitches to display (NOT WORKING RIGHT NOW)", 
     font_size = 16
     )
 
