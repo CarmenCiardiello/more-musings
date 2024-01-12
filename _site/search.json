@@ -67,6 +67,6 @@
     "href": "batter_table.html",
     "title": "Batter Table",
     "section": "",
-    "text": "This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type “All” into the dialog box in the type column. I recommend filtering with some minimum for number of pitches faced. All columns are sortable.\n\n\n\nFor filtering by number of pitches, type in the minimum pitches to display"
+    "text": "This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type “All” into the dialog box in the type column. I recommend filtering with some minimum for number of pitches faced. All columns are sortable.\n\n\n\nFor filtering by number of pitches, type in the minimum pitches to display (NOT WORKING RIGHT NOW)"
   }
 ]
