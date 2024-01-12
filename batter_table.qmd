@@ -253,6 +253,15 @@ hitting_table %>%
       player_name = colDef(name = "Name", width = 150, filterable = TRUE), 
       game_year = colDef(name = "Year", filterable = TRUE, width = 80), 
       pitch_type = colDef(name = "Type", width = 80, filterable = TRUE), 
+      n = colDef(
+        width = 60,
+        filterable = TRUE,
+        filterMethod = JS("function(rows, columnId, filterValue) {
+        return rows.filter(function(row) {
+          return row.values[columnId] >= filterValue
+        })
+      }")
+      ),
       swstr_pct = colDef(name = "SwStr%", 
                          format = colFormat(digits = 1)), 
       zone_pct = colDef(name = "Zone%", 
@@ -291,16 +300,7 @@ hitting_table %>%
                        width = 150,
                        format = colFormat(digits = 3)), 
       ev_90 = colDef(name = "EV90", 
-                     format = colFormat(digits = 1)),
-      n = colDef(
-        width = 60,
-        filterable = TRUE,
-        filterMethod = JS("function(rows, columnId, filterValue) {
-        return rows.filter(function(row) {
-          return row.values[columnId] >= filterValue
-        })
-      }")
-      )
+                     format = colFormat(digits = 1))
     ), 
     defaultPageSize = 25
   ) %>% 
