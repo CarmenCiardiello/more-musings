@@ -16,7 +16,7 @@ website:
         href: https://sabermetricmusings.blogspot.com/
     left: 
       - text: Batter Table
-        file: batter_table.qmd
+        href: batter_table.qmd
 format:
   html:
     theme: minty
