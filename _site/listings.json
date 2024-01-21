@@ -2,10 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/stephenson-cutter/index.html",
       "/posts/predictive-woba/index.html",
       "/posts/microstats-repeatability/index.html",
-      "/posts/velocity-splits/index.html",
-      "/posts/stephenson-cutter/index.html"
+      "/posts/velocity-splits/index.html"
     ]
   }
 ]

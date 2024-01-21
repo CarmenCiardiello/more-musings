@@ -1,7 +1,7 @@
 ---
 title: "Robert Stephenson's Cutter"
 author: "Carmen Ciardiello"
-date: "2022-01-21"
+date: "2024-01-21"
 categories: [baseball, analysis]
 ---
 
