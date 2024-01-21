@@ -37,7 +37,8 @@ A recent [tweet from Lance Brozdowski](https://twitter.com/LanceBroz/status/1748
 This was a great pull and an interesting hypothesis. To take it once step further, I wanted to write up a quick post looking at the pitch characteristics and see if I can support Brozdowski's assertion. Stepheson did not throw a cutter until he joined the Rays; with the Pirates he was basically a fastball-slider guy. 
 
 ```{r}
-#| echo = false
+#| echo: false
+#| warning: false
 
 df %>% 
   group_by(game_year, fielding_team, pitch_type) %>% 
@@ -140,7 +141,8 @@ df %>%
   geom_density() + 
   theme_bw() + 
   xlim(c(0, 90)) + 
-  labs(title = "Distribution of Estimated % Gyro Spin")
+  labs(title = "Distribution of Estimated % Gyro Spin", x = "Theta", color = "Pitch Type") + 
+  theme(plot.title = element_text(hjust = 0.5))
 
 
 
