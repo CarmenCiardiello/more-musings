@@ -58,7 +58,7 @@ df %>%
 
 ```
 
-The majority of his offerings with the Rays consisted of cutters, with a few more splitters thrown in. The slider was almost non-existent, especially relative to its usage in Pittsburgh. We know that the line between sliders and cutters is murky at a certain point in space, so was there really a substantive difference? I would definitely argue there was. The slider in Tampa came in at 85.3 MPH and in Pittsburgh 84.6, effectively identical. The cutter he threw at 88.7 mph on average. The movement patterns were also noticably different. 
+The majority of his offerings with the Rays consisted of cutters, with a few more splitters thrown in. The slider was almost non-existent, especially relative to its usage in Pittsburgh. We know that the line between sliders and cutters is murky at a certain point in space, so was there really a substantive difference? I would definitely argue there was. The slider in Tampa came in at 85.3 MPH and in Pittsburgh 84.6, effectively identical. The cutter he threw at 88.7 mph on average. The movement patterns were also noticably different, which Lance talked about in one of his [YouTube videos](https://t.co/QNqJkSYT66).
 
 ```{r}
 #| echo: false
@@ -78,3 +78,5 @@ df %>%
 
 ```
 
+
+Make polar chart similar to what is on savant with spin axis observed and actual
