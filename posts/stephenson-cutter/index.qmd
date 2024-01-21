@@ -1,7 +1,7 @@
 ---
 title: "Robert Stephenson's Cutter"
 author: "Carmen Ciardiello"
-date: Sys.Date()
+date: "2022-01-21"
 categories: [baseball, analysis]
 ---
 
