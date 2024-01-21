@@ -54,11 +54,14 @@ df %>%
     game_year = "Season",
     fielding_team = "Team"
     ) %>% 
-  gt_fmt_mlb_logo(columns = "fielding_team")
+  gt_fmt_mlb_logo(columns = "fielding_team") %>% 
+  tab_footnote(
+    footnote = "% of total pitches thrown"
+  )
 
 ```
 
-The majority of his offerings with the Rays consisted of cutters, with a few more splitters thrown in. The slider was almost non-existent, especially relative to its usage in Pittsburgh. We know that the line between sliders and cutters is murky at a certain point in space, so was there really a substantive difference? I would definitely argue there was. The slider in Tampa came in at 85.3 MPH and in Pittsburgh 84.6, effectively identical. The cutter he threw at 88.7 mph on average. The movement patterns were also noticably different, which Lance talked about in one of his [YouTube videos](https://t.co/QNqJkSYT66).
+The majority of his offerings with the Rays consisted of cutters, with a few more splitters thrown in. The slider was almost non-existent, especially relative to its usage in Pittsburgh. We know that the line between sliders and cutters is murky at a certain point in space, so was there really a substantive difference? I would definitively argue there was. The slider in Tampa came in at 85.3 MPH and in Pittsburgh 84.6, effectively identical. The cutter he threw at 88.7 mph on average. The movement patterns were also noticeably different, which Lance talked about in one of his [YouTube videos](https://t.co/QNqJkSYT66).
 
 ```{r}
 #| echo: false
@@ -73,10 +76,76 @@ df %>%
   geom_hline(yintercept = 0, color = "red", linetype = "dashed") + 
   theme_bw() + 
   scale_color_identity() + 
-  labs(x = "Horizontal Movement (in)", y = "Vertical Movement (in)", title = "Pitch Movement From Catcher's Perspective") + 
+  labs(x = "Horizontal Movement (in)", y = "Vertical Movement (in)", 
+       title = "Pitch Movement From Catcher's Perspective", 
+       shape = "Pitch Type") + 
+  theme(plot.title = element_text(hjust = 0.5)) 
+
+```
+The pitches colored yellow represent those from his time in Pittsburgh and correspondingly those in teal are from his time in Tampa. The cutters with the Rays are clustered in the top left, designating pitches with ride (i.e. backspin) and arm-side movement. There is some overlap with the pitches designated as sliders; the cutter can drift towards the glove-side with no magnus movement in the z-direction (almost a pure gyroball). The lack of consistency in the movement pattern might be construed as a negative but the pitch garnered a *59.9% whiff rate*. For a pitch to be thrown that often and generate swings and misses at that rate, you can see why Stephenson struck out so many batters in Tampa.  
+
+So the new pitch is good. Great. But back to the original question and point of the post: What is he doing differently if the grips between the two pitches look the same? There has to be some difference, given the distinction in movement profiles. We know he's throwing the pitch with more velocity. I explained that above. But there is something more going on here. 
+
+```{r}
+#| echo: false
+#| warning: false
+
+df %>% 
+  filter(pitch_type %in% c("FC", "SL")) %>% 
+  group_by(pitch_type, spin_axis) %>% 
+  summarise(n = n()) %>% 
+  ggplot(aes(spin_axis, n, color = pitch_type)) + 
+  geom_point() +
+  geom_segment(aes(x = spin_axis, xend = spin_axis, y = 0, yend = n)) + 
+  coord_polar() + 
+  scale_x_continuous(breaks = seq(0, 360, by = 30)) + 
+  theme_bw() + 
+  labs(x = "HawkEye Spin Axis", y = "Frequency", color = "Pitch Type",
+       title = "Spin Axis Distribution from HawkEye Measurements") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+
+```
+At least based on the 2D spin axes captured by the HawkEye cameras, the cutter and slider have functionally the same spin axis, but the ball is spinning in opposite directions. 
+
+```{r}
+#| echo: false
+#| warning: false
+
+df %>% 
+  filter(pitch_type %in% c("FC", "SL")) %>%
+  mutate(phi = round(phi, digits = 0)) %>% 
+  group_by(pitch_type, phi) %>% 
+  summarise(n = n()) %>% 
+  ggplot(aes(phi, n, color = pitch_type)) + 
+  geom_point() +
+  geom_segment(aes(x = phi, xend = phi, y = 0, yend = n)) + 
+  coord_polar() + 
+  scale_x_continuous(breaks = seq(0, 360, by = 30)) + 
+  theme_bw() + 
+  labs(x = "Movement-Based Spin Axis", y = "Frequency", color = "Pitch Type",
+       title = "Spin Axis Distribution from Movement Profile") + 
   theme(plot.title = element_text(hjust = 0.5))
 
 ```
+Now here is what the spin axes look like based on the movement of the pitches (credit to [Dr. Alan Nathan for his work](http://baseball.physics.illinois.edu/trackman/SpinAxis.pdf) enabling me to perform these calculations). This mirroring phenomenon is still present in the inferred axes from the pitch movement; both pitches seem to leverage some modicum of movement from seam-effects to the tune of about 30 degrees of axis differential between the actual and inferred 2D spin axes. Not only is this the same for the cutter and slider, but the absolute deviations are also in the same direction (clockwise from this perspective). One last aspect of the pitches I wanted to check was the estimated amount of gyroscopic spin (i.e. bullet, or football-type spin) using "the angle of the spin with respect to the x − z plane" (again, based on Dr. Nathan's work). 90 degrees represents pure gyroscopic spin, 0 represents pure transverse spin. 
+
+```{r}
+#| echo: false
+#| warning: false
+
+df %>% 
+  filter(pitch_type %in% c("FC", "SL")) %>%
+  ggplot(aes(theta, color = pitch_type)) + 
+  geom_density() + 
+  theme_bw() + 
+  xlim(c(0, 90)) + 
+  labs(title = "Distribution of Estimated % Gyro Spin")
 
 
-Make polar chart similar to what is on savant with spin axis observed and actual
+
+```
+
+These pitches similarly have the vast majority of their spin in the form of gyroscopic spin, which is not surprising with their movement profiles clustering around the (0, 0) point in the short-form movement plot above.  
+
+I said at the top this was going to be a short post, so I will leave you with this. Stephenson's slider and cutter are very similar. They are thrown with similar amounts of gyro spin, the movement profiles are close to each other, they probably have similar movement bumps from seam-effects. The thing is, while they spin around the same axis, they do so in the complete opposite direction! For all the similarities, they are actually mirrors of each other. How did the Rays coax this out of him and help develop one of the the best pitches in baseball that yielded Stephenson an eight figure, multi-year guaranteed contract? Was it simply telling him to throw the ball with more velocity and this phenomenon was a natural byproduct? Or is there more at play here? Perhaps changing the distribution of pressure he's putting on the ball with his index and middle fingers, where the cutter gets more backspin by having the index finger apply more pressure on the ball relative to the slider? That is a lot of questions to conclude a piece, but that is all we can really do. Without Stephenson or the Rays going on the record documenting what happened after Stephenson was traded to Tampa, it is impossible to know the tweak. Nevertheless, an interesting development and a great catch by Lance Brozdowski. 
