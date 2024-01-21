@@ -1,0 +1,80 @@
+---
+title: "Robert Stephenson's Cutter"
+author: "Carmen Ciardiello"
+date: Sys.Date()
+categories: [baseball, analysis]
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(duckdb)
+library(gt)
+library(cbbdata)
+library(mlbplotR)
+
+# load in data and function for adding pitch flight data
+con_read <- dbConnect(duckdb(), "~/OneDrive/Documents/R Work/MLB/duckdb data/statcast.duckdb")
+source("~/OneDrive/Documents/R Work/MLB/Pitch Physics/physics_info.R")
+
+df <- "SELECT * 
+  FROM statcast_data 
+  WHERE game_type = 'R' AND fielding_team IN ('PIT', 'TB') AND
+        game_year >= 2022 AND pitcher = 596112 " %>% 
+  dbGetQuery(con_read, .) %>% 
+  as_tibble() %>% 
+  add_physics_info()
+
+```
+
+A recent [tweet from Lance Brozdowski](https://twitter.com/LanceBroz/status/1748577589164126613) where he wonders whether the change Robert Stephenson made going from Pittsburgh to Tampa was the result of altering the velocity of his slider to turn it into a cutter instead of changing the grip is a poignant one. If you cannot read the tweet or are resistant to clicking on the link, I will provide the two pictures below.
+
+![PIT Grip](pit_grip.jpg)
+
+![TB Grip](tb_grip.png)
+
+This was a great pull and an interesting hypothesis. To take it once step further, I wanted to write up a quick post looking at the pitch characteristics and see if I can support Brozdowski's assertion. Stepheson did not throw a cutter until he joined the Rays; with the Pirates he was basically a fastball-slider guy. 
+
+```{r}
+#| echo = false
+
+df %>% 
+  group_by(game_year, fielding_team, pitch_type) %>% 
+  summarise(n = n()) %>% 
+  ungroup() %>% 
+  group_by(game_year, fielding_team) %>% 
+  mutate(pitch_pct = round(n/sum(n)*100, digits = 1)) %>% 
+  select(-n) %>% 
+  pivot_wider(names_from = pitch_type, values_from = pitch_pct, values_fill = 0) %>% 
+  ungroup() %>% 
+  gt() %>% 
+  gt_theme_athletic() %>% 
+  cols_label(
+    game_year = "Season",
+    fielding_team = "Team"
+    ) %>% 
+  gt_fmt_mlb_logo(columns = "fielding_team")
+
+```
+
+The majority of his offerings with the Rays consisted of cutters, with a few more splitters thrown in. The slider was almost non-existent, especially relative to its usage in Pittsburgh. We know that the line between sliders and cutters is murky at a certain point in space, so was there really a substantive difference? I would definitely argue there was. The slider in Tampa came in at 85.3 MPH and in Pittsburgh 84.6, effectively identical. The cutter he threw at 88.7 mph on average. The movement patterns were also noticably different. 
+
+```{r}
+#| echo: false
+
+df %>% 
+  filter(game_year == 2023, pitch_type %in% c("SL", "FC")) %>% 
+  mutate(pfx_x = pfx_x*12, pfx_z = pfx_z*12) %>% 
+  left_join(load_mlb_teams() %>% select(team_abbr, team_color2), join_by(fielding_team == team_abbr)) %>% 
+  ggplot(aes(pfx_x, pfx_z, shape = pitch_type, color = team_color2)) + 
+  geom_point(alpha = 0.75) + 
+  geom_vline(xintercept = 0, color = "red", linetype = "dashed") + 
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed") + 
+  theme_bw() + 
+  scale_color_identity() + 
+  labs(x = "Horizontal Movement (in)", y = "Vertical Movement (in)", title = "Pitch Movement From Catcher's Perspective") + 
+  theme(plot.title = element_text(hjust = 0.5))
+
+```
+
