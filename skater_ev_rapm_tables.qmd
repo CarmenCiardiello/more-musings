@@ -21,7 +21,7 @@ These estimates are rate stats (per 60 minutes of even strength ice time). Two p
 
 If you read the overviews I linked, you will realize tha RAPM values are still very noisy over one year samples. It is best to use larger samples when using RAPM to evaluate players. Five years is the best bet, but that is also an unsatisfyingly long time horizon. Three year samples split the proverbial baby in this regard, having a much more robust sample of play-by-play data to work from but providing results quicker than the five-year RAPM. 
 
-I will include tables for one-year, three-year, and five-year values and order them by my subjective view of their usefulness. The data included runs up through the games on 2024-01-21.
+I will include tables for one-year, three-year, and five-year values and order them by my subjective view of their usefulness. The data included runs up through the games on 2024-01-21. I will also note that the range of values in the 2024 years are larger. This is the product of a full season not having been played, so we see more variance in the model outputs. 
 
 # Three-Year Table
 
@@ -117,6 +117,7 @@ rapm_mix %>%
     defaultPageSize = 25, 
     defaultSorted = "RAPM", 
     defaultSortOrder = "desc"
+  )
 
 
 ```
