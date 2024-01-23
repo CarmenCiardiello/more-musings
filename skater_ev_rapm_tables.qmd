@@ -15,11 +15,11 @@ rapm_data <- readRDS("2018_2024_ev_rapm_20240122.rds")
 
 # Overview
 
-The following three tables contain NHL even strength skater reguarlized adjusted plus-minus (RAPM) data in three, five, and one year stints. The impacts are in terms of expected goals (xG) per 60 minutes of play using my own model. RAPM leverages a technique called [ridge regression](https://en.wikipedia.org/wiki/Ridge_regression) to estimate player impacts on offense in defense **in the roles they are given**. All the models have to go off of is what happened on the ice. They cannot extrapolate what would happen if a player had a different role, different deployment patterns, or played with different teammates. The quality of the teammates and opposition are accounted for of course, but if a player happens to line up with teammates who's skills do not match up well with his own, tough luck.  For more reading about RAPM, it was first popularized in NBA analysis and I would recommend reading this [two part](https://squared2020.com/2017/09/18/deep-dive-on-regularized-adjusted-plus-minus-i-introductory-example/) [series from Justin Jacobs](https://squared2020.com/2017/09/18/deep-dive-on-regularized-adjusted-plus-minus-ii-basic-application-to-2017-nba-data-with-r/), who has consulted for NBA teams. If you prefer a more hockey-centric overview, [this overview](https://hockey-graphs.com/2019/01/14/reviving-regularized-adjusted-plus-minus-for-hockey/) from the EvolvingWild twins is a great read.  
+The following three tables contain NHL even strength skater reguarlized adjusted plus-minus (RAPM) data in three, five, and one-year stints. The impacts are in terms of expected goals (xG) per 60 minutes of play using my own model. RAPM leverages a technique called [ridge regression](https://en.wikipedia.org/wiki/Ridge_regression) to estimate player impacts on offense and defense **in the roles they are given**. All the models have to go off of is what happened on the ice. They cannot extrapolate what would happen if a player had a different role, different deployment patterns, or played with different teammates. The quality of the teammates and opposition are accounted for of course, but if a player happens to line up with teammates who's skills do not match up well with his own, tough luck.  For more reading about RAPM, it was first popularized in NBA analysis and I would recommend reading this [two part](https://squared2020.com/2017/09/18/deep-dive-on-regularized-adjusted-plus-minus-i-introductory-example/) [series from Justin Jacobs](https://squared2020.com/2017/09/18/deep-dive-on-regularized-adjusted-plus-minus-ii-basic-application-to-2017-nba-data-with-r/), who has consulted for NBA teams. If you prefer a more hockey-centric overview, [this overview](https://hockey-graphs.com/2019/01/14/reviving-regularized-adjusted-plus-minus-for-hockey/) from the EvolvingWild twins is a great read.  
 
 These estimates are rate stats (per 60 minutes of even strength ice time). Two players who are close in estimated impact might look like they provided the same on-ice value on the surface, but if one player played significantly more minutes than another, that player provided more to his team. That does not make the player "better" per se, the impacts are meant to measure quality by themselves. But grizzled internet sports analysts know value is a function of both quality and opportunity. 
 
-If you read the overviews I linked, you will realize tha RAPM values are still very noisy over one year samples. It is best to use larger samples when using RAPM to evaluate players. Five years is the best bet, but that is also an unsatisfyingly long time horizon. Three year samples split the proverbial baby in this regard, having a much more robust sample of play-by-play data to work from but providing results quicker than the five-year RAPM. 
+If you read the overviews I linked, you will realize tha RAPM values are still very noisy over one year samples. It is best to use larger samples when using RAPM to evaluate players. Five years is the best bet, but that is also an unsatisfyingly long time horizon. Three year samples split the proverbial baby in this regard, having a much more robust sample of play-by-play data to work from than one-year samples but providing results quicker than the five-year RAPM. 
 
 I will include tables for one-year, three-year, and five-year values and order them by my subjective view of their usefulness. The data included runs up through the games on 2024-01-21. I will also note that the range of values in the 2024 years are larger. This is the product of a full season not having been played, so we see more variance in the model outputs. 
 
@@ -27,6 +27,7 @@ I will include tables for one-year, three-year, and five-year values and order t
 
 ```{r}
 #| echo: false
+#| warning: false
 
 three_year_rapm <- function(rapm_data, year){
   
@@ -76,7 +77,7 @@ rapm_mix %>%
 
 ```{r}
 #| echo: false
-
+#| warning: false
 
 five_year_rapm <- function(rapm_data, year){
   
@@ -126,6 +127,7 @@ rapm_mix %>%
 
 ```{r}
 #| echo: false
+#| warning: false
 
 rapm_data %>% 
   reactable(
