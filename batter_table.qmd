@@ -240,7 +240,9 @@ hitting_table <- hitting_table_all %>%
   mutate(across(where(is.numeric), coalesce, 0))
 
 ```
-This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type "All" into the dialog box in the type column. All columns are sortable. 
+
+This table contains batter rate stats for all pitches faced and is segmented by pitch type. To only look at all pitches faced, type "All" into the dialog box in the type column. All columns are sortable.
+
 ```{r}
 #| echo: false
 #| warning: false
