@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/primary-matchups/index.html",
       "/posts/stephenson-cutter/index.html",
       "/posts/predictive-woba/index.html",
       "/posts/microstats-repeatability/index.html",
