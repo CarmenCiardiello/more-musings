@@ -154,6 +154,7 @@ rapm_mix %>%
 #| warning: false
 
 rapm_data %>% 
+  mutate(across(ORAPM:RAPM, round, 4)) %>%
   reactable(
     searchable = TRUE,
     columns = list(
