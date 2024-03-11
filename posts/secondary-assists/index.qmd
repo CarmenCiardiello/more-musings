@@ -1,6 +1,8 @@
 ---
 title: "Commentary on Secondary Assists"
-format: html
+author: "Carmen Ciardiello"
+date: "2024-03-11"
+categories: [hockey, analysis]
 ---
 
 A recent question from the [Hockey PDOCast](https://open.spotify.com/show/43vupifuRswF0UTJPnuTZF) Discord (link is in the show notes if you want jump in) about the usefulness of secondary assists across the overall population of NHL players sparked some debate. The merits of leveraging secondary assists in player analysis (at least relative to goals or primary assists; I am here for the argument that citing points as one of the more paramount measures in player analysis is not the most practical) is a well trodden topic of research at this point in time. For the uninitiated, secondary assist rates are less consistent year over year compared to both goal scoring and primary assist rates. If you do some digging, you can find analysis to this effect but to save readers the time I will link to [one of these posts from Chace McCallum](https://hockeyandstuff.weebly.com/chaces-blog/secondary-assists-and-micro-stats).  
