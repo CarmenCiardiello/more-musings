@@ -9,7 +9,7 @@ editor: visual
 library(tidyverse)
 library(reactable)
 
-rapm_data <- readRDS("2018_2024_ev_rapm_20240306.rds") %>% 
+rapm_data <- readRDS("2018_2024_ev_rapm_20240329.rds") %>% 
   mutate(Player = str_replace_all(Player,  pattern = "\\.", replacement = " ")) %>% 
      mutate(player = case_when(Player == "Drew O Connor" ~ "Drew O'Connor",
                             Player == "Logan O Connor" ~ "Logan O'Connor",
@@ -47,7 +47,7 @@ Along the same lines, we know players have some ability to drive goals above exp
 
 One final note is that this does not include individual player contributions explicitly. There is no information about a player's on-ice percentages here or their individual contributions (in terms of scoring, shot attempt, scoring chance, or microstat rates). The only information fed to the model is who is on the ice and contextual factors about the game and shift at hand (home/away, shift start location, is the game a back-to-back, score, etc.) Supplying these individual stats would give more insight into player roles and would most likely help the model distinguish who is driving the bus, as it were. It is reasonable to conclude that the model would be more successful in isolating and gauging player impact. I agree with this sentiment and admit it is the main limitation of the pure RAPM approach. In the future I would like to address this concern and see which players improve/worsen with the addition of more player-specific data. That is a project for another day.
 
-I will include tables for one-year, three-year, and five-year values and order them by my subjective view of their usefulness. The data included runs up through the games on 2024-03-05. I will also note that the range of values in the 2024 years are larger. This is the product of a full season not having been played, so we see more variance in the model outputs.
+I will include tables for one-year, three-year, and five-year values and order them by my subjective view of their usefulness. The data included runs up through the games on 2024-03-30. I will also note that the range of values in the 2024 years are larger. This is the product of a full season not having been played, so we see more variance in the model outputs.
 
 # Three-Year Table
 
