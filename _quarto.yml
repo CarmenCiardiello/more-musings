@@ -15,8 +15,6 @@ website:
       - icon: archive
         href: https://sabermetricmusings.blogspot.com/
     left: 
-      - text: Batter Table
-        href: batter_table.qmd
       - text: Skater EV RAPM Data
         href: skater_ev_rapm_tables.qmd
 format:
