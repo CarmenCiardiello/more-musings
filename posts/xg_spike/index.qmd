@@ -1,0 +1,291 @@
+---
+title: "Countering Opponent Flurries"
+author: "Carmen Ciardiello"
+date: "2024-05-06"
+categories: [hockey, analysis]
+---
+
+```{r}
+#| echo: FALSE
+#| include: FALSE
+#| warning: FALSE
+
+library(tidyverse)
+library(hockeyR)
+library(duckplyr)
+library(gt)
+library(gtExtras)
+
+# Analysis based on question posed on Hockey PDOCast on 2024-05-02 at around the five minute mark
+# Question revolved around the idea of Vegas being notably proficient at responding resoundingly 
+# following a barrage of xG from opponent
+
+# load in the pbp from the past two years
+pbp <- load_pbp(season = 2023) %>% 
+  mutate(
+    season = as.numeric(season), 
+    home_id = as.integer(home_id), 
+    away_id = as.integer(away_id)
+    ) %>% 
+  bind_rows(
+    load_pbp(season = 2024) %>% 
+      mutate(
+        game_date = as_date(game_date)
+          )
+    ) %>% 
+  as_duckplyr_df()
+
+# filter for events that are a shot of some kind, add columns for shooting team and defending team
+shots <- pbp %>% 
+  filter(
+    event_type %in% c("BLOCKED_SHOT", "GOAL", "MISSED_SHOT", "SHOT"), 
+    season_type == "R"
+    ) %>% 
+  mutate(
+    shoot_team = ifelse(event_team_type == "away", away_abbreviation, home_abbreviation), 
+    def_team = ifelse(event_team_type == "away", home_abbreviation, away_abbreviation), 
+    period_minutes = str_sub(period_time, 1, 2) %>% as.numeric(.), 
+    shot = 1
+  )
+
+# get rolling rates of xG and shot attempts by game and team
+# also split period into buckets to get xg rates/spikes
+shot_rates <- shots %>% 
+  mutate(goal = ifelse(event_type == "GOAL", 1, 0)) %>% 
+  group_by(game_id, shoot_team, def_team, period, period_minutes) %>% 
+  summarise(
+    shots = n(), 
+    xg = sum(xg, na.rm = TRUE), 
+    goals = sum(goal)
+  ) %>% 
+  ungroup() %>% 
+  mutate(
+    period_minutes = period_minutes + 1, 
+    segment = case_when(
+      period_minutes %in% 1:4 ~ "Segment 1", 
+      period_minutes %in% 5:8 ~ "Segment 2", 
+      period_minutes %in% 9:12 ~ "Segment 3", 
+      period_minutes %in% 13:16 ~ "Segment 4", 
+      period_minutes %in% 17:20 ~ "Segment 5"
+    ), 
+    next_segment = case_when(
+      period_minutes %in% 1:4 ~ "Segment 2", 
+      period_minutes %in% 5:8 ~ "Segment 3", 
+      period_minutes %in% 9:12 ~ "Segment 4", 
+      period_minutes %in% 13:16 ~ "Segment 5", 
+      period_minutes %in% 17:20 ~ "None"
+    ), 
+    next_segment_2 = case_when(
+      period_minutes %in% 1:4 ~ "Segment 3", 
+      period_minutes %in% 5:8 ~ "Segment 4", 
+      period_minutes %in% 9:12 ~ "Segment 5", 
+      period_minutes %in% 13:16 ~ "None", 
+      period_minutes %in% 17:20 ~ "None"
+    )
+  )
+
+# aggregate rates by period and segment in each game
+agg_shot_rates <- shot_rates %>% 
+  group_by(game_id, shoot_team, def_team, period, segment, next_segment, next_segment_2) %>% 
+  summarise(
+    shot_rate = sum( shots ) / 4 * 60, 
+    xg_rate = sum( xg ) / 4 * 60, 
+    goal_rate = sum( goals ) / 4 * 60, 
+    .groups = "drop"
+  )
+
+# create tibble with defensive team shot rates to join to aggregate shot rates
+def_shot_rates <- agg_shot_rates %>% 
+  select(game_id, shoot_team, period, segment, shot_rate:last_col()) %>% 
+  rename(
+    def_shot_rate_next = shot_rate, 
+    def_xg_rate_next = xg_rate,
+    def_goal_rate_next = goal_rate
+  )
+
+# join defensive teams following segment performance 
+next_shot_rates <- agg_shot_rates %>% 
+  left_join(
+    def_shot_rates, 
+    join_by(game_id, def_team == shoot_team, period, next_segment == segment)
+  )
+
+tib <- next_shot_rates %>% 
+  mutate(
+    is_xg_spike = ifelse(def_xg_rate_next >= 5, 1, 0), 
+    is_goal_spike = ifelse(def_goal_rate_next >= 5, 1, 0)
+    ) %>% 
+  filter(xg_rate >= 5) %>% 
+  group_by(def_team) %>% 
+  summarise(
+    n = n(),
+    counter_xg_spike_pct = round(mean(is_xg_spike, na.rm = TRUE) * 100, digits = 2),
+    counter_goal_spike_pct = round(mean(is_goal_spike, na.rm = TRUE) * 100, digits = 2),
+    after_shot_rate = mean(def_shot_rate_next, na.rm = TRUE), 
+    after_xg_rate = mean(def_xg_rate_next, na.rm = TRUE), 
+    after_goal_rate = mean(def_goal_rate_next, na.rm = TRUE)
+  ) %>% 
+  arrange(desc(counter_xg_spike_pct))
+
+
+```
+
+
+A recent question in an excellent breakdown of the Vegas/Dallas first round series on the Hockey PDOcast prior to game 6 sprung me into action and inspired this brief post. A little after the five [minute mark of the episode](https://open.spotify.com/episode/0nbulScTiHqPFIrSGfvfHf?si=2db1861cc3114c11) Dimitri and his guest David Castillo (who does excellent work covering the Stars) wondered if Vegas is particularly adept at countering onslaughts from the opposition with its own offensive explosion. Another way of saying this is does the team in question have a propensity to succeed in both stopping an opponent's "momentum" and developing "momentum" for themselves. Put aside the question of whether momentum in the context of a professional athletic context actually exists (for that is a whole other can of worms) and let us consider the question at hand: Irrespective of whether it is something that is a "skill", is this phenomenon something that has happened often with Vegas relative to other teams? Anecdotally, having watched a ton of Vegas the past couple of seasons (given its standing in the league and cup run in 2023), it does seem as if Vegas will have these scoring chance cavalcades that completely flip the script of a game. Do these tend to also occur after an opponent finds success generating offensive chances? That is something we could try to verify, provided that we have a set of assumptions to query the play-by-play data.  
+
+There is certainly not a "correct" method of doing this. But we have to settle on some method and a set of parameters. I looked at data from the past two seasons (I thought the spirit of the question was about this version of the Golden Knights, which I would consider the team they have iced during the cup run and into this year). I segmented each period of each game in four minute increments, giving me five segments for each team in each game. I defined an offensive spike as a four minute period when a team's all-situations expected goals per 60 rate exceeded 5 (approximately 3.2 is average with my model in these two seasons). For every segment I had the offensive and defensive team in question along with the rates of expected goals, goals, and shot attempts accumulated. I joined a copy of the table to the end, where the join condition was that the next segment in the main table was the same as the segment in the table that was being joined and the defensive team in the first table was the offensive team in the second table. This allowed me to look at the offensive metrics of the attacking team in an entry alongside what the defensive team did on the offensive end in the following game segment. From there I filtered with the aforementioned xG condition and looked at how the defensive team performed in the next segment offensively with the following measures: 
+
+* The frequency with which these conditions were met for each team
+* The percentage of following segments where the defensive team had an xG rate exceeding five of its own
+* The percentage of following segments where the defensive team had a goals scored rate exceeding five of its own
+* The average shot attempt rate in the segments in question
+* The average xG rates in the segments in question
+* The average goals scored rates in the segments in question
+
+This yielded the following results: 
+
+```{r}
+#| echo: FALSE
+
+gt_theme_athletic <- function(gt_object, ...) {
+  
+  # get id, if one is passed through to use with CSS
+  table_id <- subset(gt_object[['_options']], parameter == 'table_id')$value[[1]]
+  
+  table <- gt_object |> 
+    # set table font
+    gt::opt_table_font(
+      font = list(
+        gt::google_font('Spline Sans Mono'),
+        gt::default_fonts()
+      ),
+      weight = 500
+    ) |> 
+    # set the column label font and style
+    gt::tab_style(
+      locations = gt::cells_column_labels(
+        columns = gt::everything()
+      ),
+      style = gt::cell_text(
+        font = gt::google_font('Work Sans'),
+        weight = 650,
+        size = px(14),
+        transform = 'uppercase', # column labels to uppercase
+        align = 'left'
+      )
+    ) |> 
+    gt::tab_style(
+      locations = gt::cells_title('title'),
+      style = gt::cell_text(
+        font = gt::google_font('Work Sans'),
+        weight = 650
+      )
+    ) |> 
+    gt::tab_style(
+      locations = gt::cells_title('subtitle'),
+      style = gt::cell_text(
+        font = gt::google_font('Work Sans'),
+        weight = 500
+      )
+    ) |>
+    # set think black column sep.
+    gt::tab_style(
+      style = gt::cell_borders(sides = 'left', weight = px(0.5), color = 'black'),
+      locations = gt::cells_body(
+        # everything but the first column
+        columns = c(-names(gt_object[['_data']])[1])
+      )
+    ) |> 
+    # set thin dotted row sep.
+    gt::tab_style(
+      style = gt::cell_borders(sides = "top", color = 'black', weight = px(1.5), style = 'dotted'),
+      locations = gt::cells_body(
+        rows = gt::everything()
+      )
+    )|>
+    # left align cell text
+    gt::cols_align(
+      align = 'left',
+      columns = gt::everything()
+    ) |> 
+    gt::tab_options(
+      table.font.size = 14,
+      column_labels.border.bottom.width = 2,
+      column_labels.border.bottom.color = 'black',
+      column_labels.border.top.color = 'white',
+      row_group.border.bottom.color = 'white',
+      table.border.top.style = 'none',
+      table.border.bottom.style = 'none',
+      heading.border.bottom.style = 'none',
+      heading.align = 'left',
+      heading.title.font.size = px(30),
+      source_notes.border.lr.style = 'none',
+      source_notes.font.size = 10
+    )
+  
+  # add css if table id is passed through
+  table <- if(!is.null(table_id)) {
+    table |> 
+      # remove the border from the bottom cell
+      gt::opt_css(
+        paste0("#", table_id, " tbody tr:last-child {border-bottom: 2px solid #ffffff00;}"),
+        add = TRUE
+      )
+  }
+  
+  return(table)
+  
+}
+
+tib %>% 
+  gt() %>% 
+  gt_theme_athletic() %>% 
+  fmt_number(
+    columns = after_shot_rate:last_col()
+  ) %>% 
+  cols_label(
+    counter_xg_spike_pct = "xG Counter Spike %", 
+    counter_goal_spike_pct = "Goal Counter Spike %", 
+    after_shot_rate = "Shot Rate Following Spike", 
+    after_xg_rate = "xG Rate Following Spike", 
+    after_goal_rate = "Goal Rate Following Spike",
+    def_team = "Team"
+  )
+  
+
+```
+
+Vegas does not stand out here. We see the best offensive teams overall generally populate the top of this leaderboard. Edmonton leads the way with countering an opponents xG spike with their own 28.93% of the time, followed by Dallas and Toronto. The Kings, oddly enough, top the list when you look at the same measure but instead of using xG you favor actual goals scored. But it's worth noting that looking at goal scoring rates in small segments like this is far from best practice. Even when looking at the average rates and ignoring whether a counter spike occurred, Vegas does not fair well. The only way I could slice it where Vegas approaches the top of the league is by taking looking at average xG accumulated countering a spike with the condition that the segment in question is a spike (i.e. above 5 xG per 60). Maybe that's a better way to look at this and isolating performance in those counter spike events specifically is more in the spirit of the question. I'm not sure, it seems like manipulating the data to confirm a prior (but I will add the table with the updated filtering condition at the bottom of this post, also note the tiny samples we are dealing with). But reasonable minds may differ! And like I said, there are many methods different from my segmentation method that would undoubtedly yield different results. One quibble a reader may have is by including all strength states, the sequences of the game with special teams on the ice will have an out-sized impact on these results in one way or another. I just worried that by removing about 20% of the data would make what is already not a massive sample even smaller. Again, reasonable minds, differing, etc. So if you have better methodology in mind, I urge you to pursue it yourself or let me know and I can look into it. Nevertheless, hopefully this answer to the original inquiry satiates PDOcast listeners and other hockey fans alike to some degree. 
+
+# Table with Rates Conditional on Counter Spike Occurring
+
+```{r}
+#| echo: FALSE
+
+next_shot_rates %>% 
+  mutate(
+    is_xg_spike = ifelse(def_xg_rate_next >= 5, 1, 0), 
+    is_goal_spike = ifelse(def_goal_rate_next >= 5, 1, 0)
+    ) %>% 
+  filter(xg_rate >= 5, def_xg_rate_next >= 5) %>% 
+  group_by(def_team) %>% 
+  summarise(
+    n = n(),
+    after_shot_rate = mean(def_shot_rate_next, na.rm = TRUE), 
+    after_xg_rate = mean(def_xg_rate_next, na.rm = TRUE), 
+    after_goal_rate = mean(def_goal_rate_next, na.rm = TRUE)
+  ) %>% 
+  arrange(desc(after_xg_rate)) %>% 
+  gt() %>% 
+  gt_theme_athletic() %>% 
+  fmt_number(
+    columns = after_shot_rate:last_col()
+  ) %>% 
+  cols_label(
+    after_shot_rate = "Shot Rate Following Spike", 
+    after_xg_rate = "xG Rate Following Spike", 
+    after_goal_rate = "Goal Rate Following Spike",
+    def_team = "Team"
+  )
+
+```
