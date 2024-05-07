@@ -163,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>A recent question in an excellent breakdown of the Vegas/Dallas first round series on the Hockey PDOcast prior to game 6 sprung me into action and inspired this brief post. A little after the five <a href="https://open.spotify.com/episode/0nbulScTiHqPFIrSGfvfHf?si=2db1861cc3114c11">minute mark of the episode</a> Dimitri and his guest David Castillo (who does excellent work covering the Stars) wondered if Vegas is particularly adept at countering onslaughts from the opposition with its own offensive explosion. Another way of saying this is does the team in question have a propensity to succeed in both stopping an opponent’s “momentum” and developing “momentum” for themselves. Put aside the question of whether momentum in the context of a professional athletic context actually exists (for that is a whole other can of worms) and let us consider the question at hand: Irrespective of whether it is something that is a “skill”, is this phenomenon something that has happened often with Vegas relative to other teams? Anecdotally, having watched a ton of Vegas the past couple of seasons (given its standing in the league and cup run in 2023), it does seem as if Vegas will have these scoring chance cavalcades that completely flip the script of a game. Do these tend to also occur after an opponent finds success generating offensive chances? That is something we could try to verify, provided that we have a set of assumptions to query the play-by-play data.</p>
+<p>A recent question in an excellent breakdown of the Vegas/Dallas first round series on the Hockey PDOcast prior to game 6 sprung me into action and inspired this brief post. A little after the five <a href="https://open.spotify.com/episode/0nbulScTiHqPFIrSGfvfHf?si=2db1861cc3114c11">minute mark of the episode</a> Dimitri and his guest David Castillo (who does excellent work covering the Stars) wondered if Vegas is particularly adept at countering onslaughts from the opposition with its own offensive explosion. Another way of saying this is does the team in question have a propensity to succeed in both stopping an opponent’s “momentum” and developing “momentum” for themselves. Put aside the question of whether momentum in the context of a professional athletic contest actually exists (for that is a whole other can of worms) and let us consider the question at hand: Irrespective of whether it is something that is a “skill”, is this phenomenon something that has happened often with Vegas relative to other teams? Anecdotally, having watched a ton of Vegas the past couple of seasons (given its standing in the league and cup run in 2023), it does seem as if Vegas will have these scoring chance cavalcades that completely flip the script of a game. Do these tend to also occur after an opponent finds success generating offensive chances? That is something we could try to verify, provided that we have a set of assumptions to query the play-by-play data.</p>
 <p>There is certainly not a “correct” method of doing this. But we have to settle on some method and a set of parameters. I looked at data from the past two seasons (I thought the spirit of the question was about this version of the Golden Knights, which I would consider the team they have iced during the cup run and into this year). I segmented each period of each game in four minute increments, giving me five segments for each team in each game. I defined an offensive spike as a four minute period when a team’s all-situations expected goals per 60 rate exceeded 5 (approximately 3.2 is average with my model in these two seasons). For every segment I had the offensive and defensive team in question along with the rates of expected goals, goals, and shot attempts accumulated. I joined a copy of the table to the end, where the join condition was that the next segment in the main table was the same as the segment in the table that was being joined and the defensive team in the first table was the offensive team in the second table. This allowed me to look at the offensive metrics of the attacking team in an entry alongside what the defensive team did on the offensive end in the following game segment. From there I filtered with the aforementioned xG condition and looked at how the defensive team performed in the next segment offensively with the following measures:</p>
 <ul>
 <li>The frequency with which these conditions were met for each team</li>
@@ -177,27 +177,27 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="qtqxfjmxwf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vvqwjhjnjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#qtqxfjmxwf table {
+#vvqwjhjnjo table {
   font-family: 'Spline Sans Mono', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qtqxfjmxwf thead, #qtqxfjmxwf tbody, #qtqxfjmxwf tfoot, #qtqxfjmxwf tr, #qtqxfjmxwf td, #qtqxfjmxwf th {
+#vvqwjhjnjo thead, #vvqwjhjnjo tbody, #vvqwjhjnjo tfoot, #vvqwjhjnjo tr, #vvqwjhjnjo td, #vvqwjhjnjo th {
   border-style: none;
 }
 
-#qtqxfjmxwf p {
+#vvqwjhjnjo p {
   margin: 0;
   padding: 0;
 }
 
-#qtqxfjmxwf .gt_table {
+#vvqwjhjnjo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -223,12 +223,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_caption {
+#vvqwjhjnjo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qtqxfjmxwf .gt_title {
+#vvqwjhjnjo .gt_title {
   color: #333333;
   font-size: 30px;
   font-weight: initial;
@@ -240,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#qtqxfjmxwf .gt_subtitle {
+#vvqwjhjnjo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -252,7 +252,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#qtqxfjmxwf .gt_heading {
+#vvqwjhjnjo .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -264,13 +264,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_bottom_border {
+#vvqwjhjnjo .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_col_headings {
+#vvqwjhjnjo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #FFFFFF;
@@ -285,7 +285,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_col_heading {
+#vvqwjhjnjo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -305,7 +305,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qtqxfjmxwf .gt_column_spanner_outer {
+#vvqwjhjnjo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -317,15 +317,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#qtqxfjmxwf .gt_column_spanner_outer:first-child {
+#vvqwjhjnjo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qtqxfjmxwf .gt_column_spanner_outer:last-child {
+#vvqwjhjnjo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qtqxfjmxwf .gt_column_spanner {
+#vvqwjhjnjo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -337,11 +337,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#qtqxfjmxwf .gt_spanner_row {
+#vvqwjhjnjo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qtqxfjmxwf .gt_group_heading {
+#vvqwjhjnjo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#qtqxfjmxwf .gt_empty_group_heading {
+#vvqwjhjnjo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -382,15 +382,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#qtqxfjmxwf .gt_from_md > :first-child {
+#vvqwjhjnjo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qtqxfjmxwf .gt_from_md > :last-child {
+#vvqwjhjnjo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qtqxfjmxwf .gt_row {
+#vvqwjhjnjo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -409,7 +409,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#qtqxfjmxwf .gt_stub {
+#vvqwjhjnjo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -422,7 +422,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtqxfjmxwf .gt_stub_row_group {
+#vvqwjhjnjo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -436,15 +436,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#qtqxfjmxwf .gt_row_group_first td {
+#vvqwjhjnjo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qtqxfjmxwf .gt_row_group_first th {
+#vvqwjhjnjo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qtqxfjmxwf .gt_summary_row {
+#vvqwjhjnjo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -454,16 +454,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtqxfjmxwf .gt_first_summary_row {
+#vvqwjhjnjo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_first_summary_row.thick {
+#vvqwjhjnjo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qtqxfjmxwf .gt_last_summary_row {
+#vvqwjhjnjo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -473,7 +473,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_grand_summary_row {
+#vvqwjhjnjo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -483,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtqxfjmxwf .gt_first_grand_summary_row {
+#vvqwjhjnjo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -493,7 +493,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_last_grand_summary_row_top {
+#vvqwjhjnjo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -503,11 +503,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_striped {
+#vvqwjhjnjo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qtqxfjmxwf .gt_table_body {
+#vvqwjhjnjo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -516,7 +516,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_footnotes {
+#vvqwjhjnjo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -530,7 +530,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_footnote {
+#vvqwjhjnjo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -539,7 +539,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtqxfjmxwf .gt_sourcenotes {
+#vvqwjhjnjo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -553,7 +553,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#qtqxfjmxwf .gt_sourcenote {
+#vvqwjhjnjo .gt_sourcenote {
   font-size: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -561,63 +561,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#qtqxfjmxwf .gt_left {
+#vvqwjhjnjo .gt_left {
   text-align: left;
 }
 
-#qtqxfjmxwf .gt_center {
+#vvqwjhjnjo .gt_center {
   text-align: center;
 }
 
-#qtqxfjmxwf .gt_right {
+#vvqwjhjnjo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qtqxfjmxwf .gt_font_normal {
+#vvqwjhjnjo .gt_font_normal {
   font-weight: normal;
 }
 
-#qtqxfjmxwf .gt_font_bold {
+#vvqwjhjnjo .gt_font_bold {
   font-weight: bold;
 }
 
-#qtqxfjmxwf .gt_font_italic {
+#vvqwjhjnjo .gt_font_italic {
   font-style: italic;
 }
 
-#qtqxfjmxwf .gt_super {
+#vvqwjhjnjo .gt_super {
   font-size: 65%;
 }
 
-#qtqxfjmxwf .gt_footnote_marks {
+#vvqwjhjnjo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qtqxfjmxwf .gt_asterisk {
+#vvqwjhjnjo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qtqxfjmxwf .gt_indent_1 {
+#vvqwjhjnjo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qtqxfjmxwf .gt_indent_2 {
+#vvqwjhjnjo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qtqxfjmxwf .gt_indent_3 {
+#vvqwjhjnjo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qtqxfjmxwf .gt_indent_4 {
+#vvqwjhjnjo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qtqxfjmxwf .gt_indent_5 {
+#vvqwjhjnjo .gt_indent_5 {
   text-indent: 25px;
 }
 
@@ -876,27 +876,27 @@ ul.task-list li input[type="checkbox"] {
 <div class="cell">
 <div class="cell-output-display">
 
-<div id="kownyfytxi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="gaqqeihgvf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Spline+Sans+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#kownyfytxi table {
+#gaqqeihgvf table {
   font-family: 'Spline Sans Mono', system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kownyfytxi thead, #kownyfytxi tbody, #kownyfytxi tfoot, #kownyfytxi tr, #kownyfytxi td, #kownyfytxi th {
+#gaqqeihgvf thead, #gaqqeihgvf tbody, #gaqqeihgvf tfoot, #gaqqeihgvf tr, #gaqqeihgvf td, #gaqqeihgvf th {
   border-style: none;
 }
 
-#kownyfytxi p {
+#gaqqeihgvf p {
   margin: 0;
   padding: 0;
 }
 
-#kownyfytxi .gt_table {
+#gaqqeihgvf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -922,12 +922,12 @@ ul.task-list li input[type="checkbox"] {
   border-left-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_caption {
+#gaqqeihgvf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kownyfytxi .gt_title {
+#gaqqeihgvf .gt_title {
   color: #333333;
   font-size: 30px;
   font-weight: initial;
@@ -939,7 +939,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-width: 0;
 }
 
-#kownyfytxi .gt_subtitle {
+#gaqqeihgvf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -951,7 +951,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-width: 0;
 }
 
-#kownyfytxi .gt_heading {
+#gaqqeihgvf .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -963,13 +963,13 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_bottom_border {
+#gaqqeihgvf .gt_bottom_border {
   border-bottom-style: none;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_col_headings {
+#gaqqeihgvf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #FFFFFF;
@@ -984,7 +984,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_col_heading {
+#gaqqeihgvf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1004,7 +1004,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kownyfytxi .gt_column_spanner_outer {
+#gaqqeihgvf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1016,15 +1016,15 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 4px;
 }
 
-#kownyfytxi .gt_column_spanner_outer:first-child {
+#gaqqeihgvf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kownyfytxi .gt_column_spanner_outer:last-child {
+#gaqqeihgvf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kownyfytxi .gt_column_spanner {
+#gaqqeihgvf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -1036,11 +1036,11 @@ ul.task-list li input[type="checkbox"] {
   width: 100%;
 }
 
-#kownyfytxi .gt_spanner_row {
+#gaqqeihgvf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kownyfytxi .gt_group_heading {
+#gaqqeihgvf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1066,7 +1066,7 @@ ul.task-list li input[type="checkbox"] {
   text-align: left;
 }
 
-#kownyfytxi .gt_empty_group_heading {
+#gaqqeihgvf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1081,15 +1081,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 
-#kownyfytxi .gt_from_md > :first-child {
+#gaqqeihgvf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kownyfytxi .gt_from_md > :last-child {
+#gaqqeihgvf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kownyfytxi .gt_row {
+#gaqqeihgvf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1108,7 +1108,7 @@ ul.task-list li input[type="checkbox"] {
   overflow-x: hidden;
 }
 
-#kownyfytxi .gt_stub {
+#gaqqeihgvf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1121,7 +1121,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kownyfytxi .gt_stub_row_group {
+#gaqqeihgvf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1135,15 +1135,15 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: top;
 }
 
-#kownyfytxi .gt_row_group_first td {
+#gaqqeihgvf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kownyfytxi .gt_row_group_first th {
+#gaqqeihgvf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kownyfytxi .gt_summary_row {
+#gaqqeihgvf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1153,16 +1153,16 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kownyfytxi .gt_first_summary_row {
+#gaqqeihgvf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_first_summary_row.thick {
+#gaqqeihgvf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kownyfytxi .gt_last_summary_row {
+#gaqqeihgvf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1172,7 +1172,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_grand_summary_row {
+#gaqqeihgvf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1182,7 +1182,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kownyfytxi .gt_first_grand_summary_row {
+#gaqqeihgvf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1192,7 +1192,7 @@ ul.task-list li input[type="checkbox"] {
   border-top-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_last_grand_summary_row_top {
+#gaqqeihgvf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1202,11 +1202,11 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_striped {
+#gaqqeihgvf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kownyfytxi .gt_table_body {
+#gaqqeihgvf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1215,7 +1215,7 @@ ul.task-list li input[type="checkbox"] {
   border-bottom-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_footnotes {
+#gaqqeihgvf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1229,7 +1229,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_footnote {
+#gaqqeihgvf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1238,7 +1238,7 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kownyfytxi .gt_sourcenotes {
+#gaqqeihgvf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1252,7 +1252,7 @@ ul.task-list li input[type="checkbox"] {
   border-right-color: #D3D3D3;
 }
 
-#kownyfytxi .gt_sourcenote {
+#gaqqeihgvf .gt_sourcenote {
   font-size: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1260,63 +1260,63 @@ ul.task-list li input[type="checkbox"] {
   padding-right: 5px;
 }
 
-#kownyfytxi .gt_left {
+#gaqqeihgvf .gt_left {
   text-align: left;
 }
 
-#kownyfytxi .gt_center {
+#gaqqeihgvf .gt_center {
   text-align: center;
 }
 
-#kownyfytxi .gt_right {
+#gaqqeihgvf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kownyfytxi .gt_font_normal {
+#gaqqeihgvf .gt_font_normal {
   font-weight: normal;
 }
 
-#kownyfytxi .gt_font_bold {
+#gaqqeihgvf .gt_font_bold {
   font-weight: bold;
 }
 
-#kownyfytxi .gt_font_italic {
+#gaqqeihgvf .gt_font_italic {
   font-style: italic;
 }
 
-#kownyfytxi .gt_super {
+#gaqqeihgvf .gt_super {
   font-size: 65%;
 }
 
-#kownyfytxi .gt_footnote_marks {
+#gaqqeihgvf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kownyfytxi .gt_asterisk {
+#gaqqeihgvf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kownyfytxi .gt_indent_1 {
+#gaqqeihgvf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kownyfytxi .gt_indent_2 {
+#gaqqeihgvf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kownyfytxi .gt_indent_3 {
+#gaqqeihgvf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kownyfytxi .gt_indent_4 {
+#gaqqeihgvf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kownyfytxi .gt_indent_5 {
+#gaqqeihgvf .gt_indent_5 {
   text-indent: 25px;
 }
 
