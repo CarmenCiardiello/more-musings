@@ -1,6 +1,8 @@
 ---
-title: "Can We Identify Poor Postseason Performers"
-format: html
+title: "Can We Identify Poor Postseason Performers?"
+author: "Carmen Ciardiello"
+date: "2024-05-25"
+categories: [hockey, analysis]
 ---
 
 
