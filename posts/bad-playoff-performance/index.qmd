@@ -62,7 +62,7 @@ df1 %>%
   labs(
     x = "Career Playoff Games to Date", 
     y = "Year over Year Change in Scoring", 
-    title = "Changes in Career Delta Between Reg and Postseason Scoring as a Function of Games Played", 
+    title = "Changes in Career Delta Between Reg and Postseason Scoring", 
     subtitle = "Data from 2018-2023 Postseasons"   
   )
 
