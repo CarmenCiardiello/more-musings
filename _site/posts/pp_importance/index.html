@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,8 +62,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -67,12 +75,11 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-fixed fullcontent">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Sporting Musings</span>
     </a>
@@ -84,39 +91,39 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../skater_ev_rapm_tables.html" rel="" target="">
- <span class="menu-text">Skater EV RAPM Data</span></a>
+    <a class="nav-link" href="../../skater_ev_rapm_tables.html"> 
+<span class="menu-text">Skater EV RAPM Data</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/CarmenCiardiello" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/CarmenCiardiello"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/cdciardiello" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/cdciardiello"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/" rel="" target=""><i class="bi bi-archive" role="img">
+    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/"> <i class="bi bi-archive" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -163,17 +170,26 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+
 <p>Last week, Travis Yost over at TSN wrote about the increase in <a href="https://www.tsn.ca/a-potent-power-play-has-never-been-more-important-1.2158605">correlation between powerplay effectiveness and overall team success.</a> The natural conclusion is that an effective powerplay is, more so than ever, a driving force behind team success in the NHL. Correlation is not causation; if two measures are correlated that does not mean there is a cause and effect relationship between those two measures. Still, effective powerplays result in goals scored and goals scored help drive goal margins. The name of the game, ultimately, is outscoring the other team. If a team does that more often than not, we should expect that team will be successful. Logically it would indicate that this relationship is in fact causal. That is not to say a good powerplay is the be all and end all. There are other facets of the game that contribute to a team’s success. But Yost was isolating the powerplay and that is what we are going to do here as well. To recreate Travis’ work, I pulled team-level data from <a href="https://www.naturalstattrick.com/">Natural Stattrick</a> going back to the 2011-2012 regular season and specifically looked at goals scored and conceded rates at even strength and for special teams and calculated the correlations (just like Travis) between points percentage and those four rates.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Here we can see that we have come to the same conclusion. The strength of the correlation between team success and powerplay scoring has generally been on the rise the past decade. The rest of the rates in question have stayed relatively stagnant, though scoring at even strength has slightly increased in import as the league on the whole puts more pucks in the back of the net. There are a couple of other items from this figure that are worth noting. The first are the strong correlations between goals conceded at even strength and success (the correlations for the goals conceded are negative because successful teams allow fewer goals). Obviously keeping the puck out of your own net is incredibly important. But measures of defense are more volatile year-over-year and there is less of a spread in the figures we see teams post because a team playing defense has less control over a given sequence that the offensive team. In season this matters a ton for wins and losses, but between seasons defensive success is much more difficult to project. Hence the focus on offensive results. That does not mean teams have no control over their defensive performance; moreover, it is muted relative to offense. That can be a post for another day.</p>
 <p>Apologies for the brief digression. The second item is the tightening of the gap between powerplay and even strength offense. We do not see the same phenomena with penalty kill defense and even strength defense (most likely an artifact of what I was talking about above). We are now at the point that where powerplay offense provides close to as much signal for whether a team is good as even strength offense despite the fact that more than 80% of a given game, on average, is played at even strength. And that figure is rising in recent vintage.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In 2015 there is a clear change in officiating resulting in more game time played at even strength. The relative magnitude is small; we are talking a change on the order of a few percentage points. But this difference would make a careful observer suspect that, all else being equal, powerplay scoring should become a less important tool in a good team’s toolbox. That is very much not the case.</p>
@@ -182,13 +198,21 @@ ul.task-list li input[type="checkbox"] {
 <p>Back to the analysis at hand. Taking these aforementioned players, I charted by season the average percent of each teams total powerplay time those players were on the ice. As you can see, there has been a sharp increase to the tune about about 20% more playing time.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Over this time frame the percentage of minutes played at even strength has been stagnant and we can see the sharp increase in powerplay ice time. If the best players are playing more on the powerplay and we know that hockey is a strong-link game based on research from <a href="https://www.nytimes.com/athletic/4333303/2023/03/22/nhl-stanley-cup-playoffs-star-power-depth/">Dom Luszczyszyn</a> of the Athletic and <a href="https://hockey-graphs.com/2017/03/14/strong-and-weak-links-talent-distribution-within-teams/">Alex Novet</a> at Hockey Graphs, then it should come to no surprise that powerplay offense has started to become a more integral part of how teams win games. This manifests itself in the spread in powerplay goal scoring rates being much larger than even strength rates. Granted, the smaller samples we have of powerplays on the ice will lend itself to more variance, but undoubtedly the fact that the best players are increasingly on the ice during powerplays is going to make it so that there is larger spread in success (given the assumption that hockey is a strong-link game). As you can see, that spread has widened as teams have begun to optimize their personnel usage, while at even strength the spread has been static over time.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>What is likely the main culprit for the increased importance on powerplay scoring? I would argue it is player deployment. That is not to say this is the sole reason. Yost in his TSN piece mentioned tactics as another potential reason for these results and I would certainly agree. Teams more than ever are forgoing dumping the puck in favor of generating more controlled zone entries, which we know result in more scoring chances. This is something that can be studied from a multitude of angles and personnel usage is likely more than just the tip of the iceberg, but not the sole driver of the phenomenon. Digging into the data tracked by Corey Sznajder for his <a href="https://www.allthreezones.com/">All Three Zones project</a> would likely unearth even more insights. That is a project for another day. For now though, I believe we can safely assume that some not insignificant portion of powerplay importance is the direct result of these drastic changes in player usage over the past decade, so I will leave it there. If you have any questions, comments, or quibbles, feel free to reach out via any of the avenues outlined in the About tab of the site.</p>
@@ -275,10 +299,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -288,8 +329,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -301,7 +351,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -345,6 +518,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -370,6 +544,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -430,6 +630,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
