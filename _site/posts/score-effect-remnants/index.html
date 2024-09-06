@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,8 +62,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -67,12 +75,11 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-fixed fullcontent">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Sporting Musings</span>
     </a>
@@ -84,39 +91,39 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../skater_ev_rapm_tables.html" rel="" target="">
- <span class="menu-text">Skater EV RAPM Data</span></a>
+    <a class="nav-link" href="../../skater_ev_rapm_tables.html"> 
+<span class="menu-text">Skater EV RAPM Data</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/CarmenCiardiello" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/CarmenCiardiello"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/cdciardiello" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/cdciardiello"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/" rel="" target=""><i class="bi bi-archive" role="img">
+    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/"> <i class="bi bi-archive" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -163,13 +170,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+
 <p>A playoff game between the Rangers and Hurricanes on May 16th, 2024 sparked a question in regards to score effects. This was the deciding game in the series, a series in which the Rangers prevailed four games to two. At the start of the third period, the Rangers were down three goals to one. Martin Necas opened up the scoring with just 82 seconds left in the first period, followed by goals from Seth Jarvis, Vincent Trocheck, and Sebastian Aho all in first half of the second period. Anecdotally, play was pretty even between both sides despite the two goal deficit and the Rangers really opened it up offensively in the third period as they sought to chase down Carolina (as NHL teams are wont to do). What was curious to me was that even after tying the game, the Rangers appeared to push with the same offensive fervor that they were as they trailed by two goals.</p>
 <p>This curiosity was the result of my basic understanding of what folks call score-effects. For the uninitiated, score-effects are the phenomena of, when controlling for the quality of the teams at hand, hockey clubs push more aggressively offensively when trailing and, correspondingly, cede territory and shots when defending a lead. Naturally this phenomena grows as the score differential grows, the consequence of the marginal value of a goal conceded lessening as the score differential increases. A team trailing by two goals is very likely to lose, as is a team trailing by three goals at any point in time. Thus, the trailing team does not care much for conceding a goal because it was already likely to lose down 2 goals while a goal scored would greatly increase its odds of winning. We often use score-effects to discount shots, chances, or expected goals generated by a team trailing. If teams behave in such a way where there are these measurable score-effects, one can surmise that it is much easier to generate offense when the other team is not much of a threat to return the favor.</p>
 <p>Now, let us get back to the game between New York and Carolina. The Rangers made a large comeback down two goals at the start of the third period but seemingly kept the pedal to metal (as it were) once the game was tied, eventually tacking on the game-winning goal with just under four minutes after the game-tying goal and sealing the contest and playoff series with an empty net goal in the final minute. And (again anecdotally) this did not seem to be a function of the Rangers receiving a visit from Lady Luck and opportunistically scoring on two of only a handful of shots; moreover they continued to dominate play even as and after the score was tied. This brings me to my question: is there such a thing as score-effect remnants? Meaning, when teams are chasing down a large deficit and happen to make a comeback, is there some sort of residual effect where the previously trailing team stays in a similar tactical lane? One might interpret this as a specific aspect or type of “momentum”, a (to put it gently) much debated topic in discourse across sports. Some of a certain persuasion might be rolling their eyes, while others might be baffled at the suggestion that momentum is not a driving force in deciding athletic contests. At the risk of angering folks, I thought it would be a worthwhile exercise to investigate the existence of these score-effect residuals and determine if my eyes were playing a trick on me as I took in the come-from-behind Rangers victory.</p>
 <p>I pulled play-by-play data from the 2021 through 2024 seasons. I searched for games where at some point one team in the contest was trailing by at least three goals. I then filtered for those games and in those games found the point where the score differential reached three and only considered the play-by-play data after that point. In these games I identified the trailing team in question and tracked its performance as the game progressed. As a proxy for performance, the metric of choice was 5v5 expected goals for percentage (xGF%) for the trailing team (for those unfamiliar, expected goals takes unblocked shot attempts and weights those shot attempts by the probability that the shot attempt results in a goal, so an xG of 0.1 indicates that the shot has a 10% chance of finding the back of the net). This process yielded the following results:</p>
 <div class="cell">
 <div class="cell-output-display">
-
 <div id="czwdfepdce" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -618,52 +625,63 @@ ul.task-list li input[type="checkbox"] {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Score Diff">Score Diff</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Losing xG">Losing xG</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Winning xG">Winning xG</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="xGF%">xGF%</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">1</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">10899</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">78.61</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">79.28</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">49.8</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">30889</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">199.82</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">379.40</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">34.5</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">80144</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">576.35</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">534.72</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.9</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">34050</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">237.61</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">227.79</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.1</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">5</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">11757</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">78.44</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">75.16</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.1</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3718</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.85</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.71</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">48.3</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Score Diff" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Score Diff</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">n</th>
+<th id="Losing xG" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Losing xG</th>
+<th id="Winning xG" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Winning xG</th>
+<th id="xGF%" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">xGF%</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">1</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">10899</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">78.61</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">79.28</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">49.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">30889</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">199.82</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">379.40</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">34.5</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">80144</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">576.35</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">534.72</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">34050</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">237.61</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">227.79</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">5</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">11757</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">78.44</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">75.16</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3718</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.85</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.71</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">48.3</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -671,7 +689,6 @@ ul.task-list li input[type="checkbox"] {
 <p>I would argue this table provides some indication that my pondering of the existance of score-effect residuals was misguided and the result of being swept up in the results of a singular outcome. Teams do not seem to perform better after coming back from a large deficit. Compare the results above to the results regardless of whether one team suffers a large deficit:</p>
 <div class="cell">
 <div class="cell-output-display">
-
 <div id="ggbtgyldqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -1120,52 +1137,63 @@ ul.task-list li input[type="checkbox"] {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Score Diff">Score Diff</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Losing xG">Losing xG</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Winning xG">Winning xG</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="xGF%">xGF%</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">1</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">376825</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2,688.24</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2,654.41</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">50.3</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">178546</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">1,277.06</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">1,237.69</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">50.8</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">80144</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">576.35</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">534.72</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.9</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">34050</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">237.61</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">227.79</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.1</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">5</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">11757</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">78.44</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">75.16</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.1</td></tr>
-    <tr><td headers="score_diff" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3718</td>
-<td headers="losing_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.85</td>
-<td headers="winning_xg" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.71</td>
-<td headers="xg_perc" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">48.3</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Score Diff" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Score Diff</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">n</th>
+<th id="Losing xG" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Losing xG</th>
+<th id="Winning xG" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Winning xG</th>
+<th id="xGF%" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">xGF%</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">1</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">376825</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2,688.24</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2,654.41</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">50.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">178546</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">1,277.06</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">1,237.69</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">50.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">80144</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">576.35</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">534.72</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">34050</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">237.61</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">227.79</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">5</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">11757</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">78.44</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">75.16</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.1</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="score_diff" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3718</td>
+<td class="gt_row gt_left" headers="losing_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.85</td>
+<td class="gt_row gt_left" headers="winning_xg" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.71</td>
+<td class="gt_row gt_left" headers="xg_perc" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">48.3</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1254,10 +1282,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1267,8 +1312,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1280,7 +1334,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1324,6 +1501,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1349,6 +1527,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1409,6 +1613,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

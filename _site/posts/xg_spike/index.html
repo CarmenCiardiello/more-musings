@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -47,7 +47,13 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -56,8 +62,10 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -67,12 +75,11 @@ ul.task-list li input[type="checkbox"] {
 
 <body class="nav-fixed fullcontent">
 
-
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Sporting Musings</span>
     </a>
@@ -84,39 +91,39 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../skater_ev_rapm_tables.html" rel="" target="">
- <span class="menu-text">Skater EV RAPM Data</span></a>
+    <a class="nav-link" href="../../skater_ev_rapm_tables.html"> 
+<span class="menu-text">Skater EV RAPM Data</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../about.html" rel="" target="">
- <span class="menu-text">About</span></a>
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/CarmenCiardiello" rel="" target=""><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/CarmenCiardiello"> <i class="bi bi-github" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com/cdciardiello" rel="" target=""><i class="bi bi-twitter" role="img">
+    <a class="nav-link" href="https://twitter.com/cdciardiello"> <i class="bi bi-twitter" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/" rel="" target=""><i class="bi bi-linkedin" role="img">
+    <a class="nav-link" href="https://www.linkedin.com/in/carmen-ciardiello-01522913a/"> <i class="bi bi-linkedin" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/" rel="" target=""><i class="bi bi-archive" role="img">
+    <a class="nav-link" href="https://sabermetricmusings.blogspot.com/"> <i class="bi bi-archive" role="img">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -163,6 +170,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+
 <p>A recent question in an excellent breakdown of the Vegas/Dallas first round series on the Hockey PDOcast prior to game 6 sprung me into action and inspired this brief post. A little after the five <a href="https://open.spotify.com/episode/0nbulScTiHqPFIrSGfvfHf?si=2db1861cc3114c11">minute mark of the episode</a> Dimitri and his guest David Castillo (who does excellent work covering the Stars) wondered if Vegas is particularly adept at countering onslaughts from the opposition with its own offensive explosion. Another way of saying this is does the team in question have a propensity to succeed in both stopping an opponent’s “momentum” and developing “momentum” for themselves. Put aside the question of whether momentum in the context of a professional athletic contest actually exists (for that is a whole other can of worms) and let us consider the question at hand: Irrespective of whether it is something that is a “skill”, is this phenomenon something that has happened often with Vegas relative to other teams? Anecdotally, having watched a ton of Vegas the past couple of seasons (given its standing in the league and cup run in 2023), it does seem as if Vegas will have these scoring chance cavalcades that completely flip the script of a game. Do these tend to also occur after an opponent finds success generating offensive chances? That is something we could try to verify, provided that we have a set of assumptions to query the play-by-play data.</p>
 <p>There is certainly not a “correct” method of doing this. But we have to settle on some method and a set of parameters. I looked at data from the past two seasons (I thought the spirit of the question was about this version of the Golden Knights, which I would consider the team they have iced during the cup run and into this year). I segmented each period of each game in four minute increments, giving me five segments for each team in each game. I defined an offensive spike as a four minute period when a team’s all-situations expected goals per 60 rate exceeded 5 (approximately 3.2 is average with my model in these two seasons). For every segment I had the offensive and defensive team in question along with the rates of expected goals, goals, and shot attempts accumulated. I joined a copy of the table to the end, where the join condition was that the next segment in the main table was the same as the segment in the table that was being joined and the defensive team in the first table was the offensive team in the second table. This allowed me to look at the offensive metrics of the attacking team in an entry alongside what the defensive team did on the offensive end in the following game segment. From there I filtered with the aforementioned xG condition and looked at how the defensive team performed in the next segment offensively with the following measures:</p>
 <ul>
@@ -176,7 +184,6 @@ ul.task-list li input[type="checkbox"] {
 <p>This yielded the following results:</p>
 <div class="cell">
 <div class="cell-output-display">
-
 <div id="vvqwjhjnjo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -625,248 +632,311 @@ ul.task-list li input[type="checkbox"] {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Team">Team</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="xG Counter Spike %">xG Counter Spike %</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Goal Counter Spike %">Goal Counter Spike %</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Shot Rate Following Spike">Shot Rate Following Spike</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="xG Rate Following Spike">xG Rate Following Spike</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Goal Rate Following Spike">Goal Rate Following Spike</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">EDM</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">274</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">28.93</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.86</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">58.25</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.88</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.19</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">DAL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">224</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.95</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.47</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">63.26</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.93</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.57</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">TOR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">233</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.49</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.98</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">59.65</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.72</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.86</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">BOS</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">239</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.47</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">26.37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">57.12</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.34</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.37</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NJD</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">224</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.45</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">21.57</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">66.86</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.92</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.53</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">FLA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">281</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">27.36</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">64.10</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.86</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.33</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">OTT</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">293</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">26.13</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">16.67</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">66.96</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.72</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.77</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">PIT</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">270</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.91</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.62</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">63.65</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.65</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.80</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">WPG</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">237</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.61</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.78</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">59.82</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.70</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.84</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">BUF</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">285</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">25.24</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">22.82</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">63.06</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.43</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.86</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CGY</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">218</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">24.55</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">18.56</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">64.49</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.26</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.14</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NYI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">269</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">24.23</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">18.56</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">64.10</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.47</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.94</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">TBL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">257</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.33</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.89</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">56.33</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.00</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.00</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">COL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">237</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">23.08</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">22.49</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">61.78</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.38</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.82</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NSH</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">310</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">22.27</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">15.91</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">61.50</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.20</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.52</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CAR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">197</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">21.90</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">16.79</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">66.35</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.41</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.63</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">MIN</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">256</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">21.74</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">21.74</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">60.49</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.40</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.59</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">DET</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">228</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.78</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">15.58</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">57.86</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.03</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.53</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">LAK</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">216</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.38</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">28.03</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">59.71</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.18</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">4.49</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">VAN</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">262</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.11</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">21.20</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">56.90</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.11</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.51</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NYR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">241</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.00</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.41</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">63.09</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.33</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.53</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">SJS</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">285</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.90</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">13.27</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">56.40</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.87</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">1.99</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">VGK</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">247</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.77</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.21</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">60.17</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.25</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.97</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">STL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">277</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.17</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.73</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">56.35</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.01</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.34</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">SEA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">219</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">18.87</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">22.01</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">58.58</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.11</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.40</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CBJ</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">300</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">18.18</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">15.45</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">56.32</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.68</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.52</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CHI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">292</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">18.05</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">15.61</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">51.07</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.83</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.63</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">WSH</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">254</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.78</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.00</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">57.17</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.86</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.33</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">ARI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">312</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.67</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.67</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">50.58</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.98</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.93</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">PHI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">260</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.58</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">20.88</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">52.91</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.75</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.38</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">MTL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">329</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">17.47</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.65</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">53.06</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.67</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">3.14</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">ANA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">376</td>
-<td headers="counter_xg_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">13.91</td>
-<td headers="counter_goal_spike_pct" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">19.55</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">55.09</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.61</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">2.93</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Team" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Team</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">n</th>
+<th id="xG Counter Spike %" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">xG Counter Spike %</th>
+<th id="Goal Counter Spike %" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Goal Counter Spike %</th>
+<th id="Shot Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Shot Rate Following Spike</th>
+<th id="xG Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">xG Rate Following Spike</th>
+<th id="Goal Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Goal Rate Following Spike</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">EDM</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">274</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">28.93</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.86</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">58.25</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.88</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.19</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">DAL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">224</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.95</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.47</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">63.26</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.93</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.57</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">TOR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">233</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.49</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.98</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">59.65</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.72</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.86</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">BOS</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">239</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.47</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">26.37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">57.12</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.34</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.37</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NJD</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">224</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.45</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">21.57</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">66.86</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.92</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.53</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">FLA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">281</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">27.36</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">64.10</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.86</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.33</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">OTT</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">293</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">26.13</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">16.67</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">66.96</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.72</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.77</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">PIT</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">270</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.91</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.62</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">63.65</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.65</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.80</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">WPG</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">237</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.61</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.78</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">59.82</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.70</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.84</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">BUF</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">285</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">25.24</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">22.82</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">63.06</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.43</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.86</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CGY</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">218</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">24.55</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">18.56</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">64.49</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.26</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.14</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NYI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">269</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">24.23</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">18.56</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">64.10</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.47</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.94</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">TBL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">257</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.33</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.89</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">56.33</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.00</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">COL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">237</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">23.08</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">22.49</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">61.78</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.38</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.82</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NSH</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">310</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">22.27</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">15.91</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">61.50</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.20</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.52</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CAR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">197</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">21.90</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">16.79</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">66.35</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.41</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.63</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">MIN</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">256</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">21.74</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">21.74</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">60.49</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.40</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.59</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">DET</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">228</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.78</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">15.58</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">57.86</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.03</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.53</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">LAK</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">216</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.38</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">28.03</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">59.71</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.18</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">4.49</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">VAN</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">262</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.11</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">21.20</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">56.90</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.11</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.51</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NYR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">241</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.00</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.41</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">63.09</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.33</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.53</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">SJS</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">285</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.90</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">13.27</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">56.40</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.87</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">1.99</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">VGK</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">247</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.77</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.21</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">60.17</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.25</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.97</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">STL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">277</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.17</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.73</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">56.35</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.01</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.34</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">SEA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">219</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">18.87</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">22.01</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">58.58</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.11</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.40</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CBJ</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">300</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">18.18</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">15.45</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">56.32</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.68</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.52</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CHI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">292</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">18.05</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">15.61</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">51.07</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.83</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.63</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">WSH</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">254</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.78</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.00</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">57.17</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.86</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.33</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">ARI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">312</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.67</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.67</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">50.58</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.98</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.93</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">PHI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">260</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.58</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">20.88</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">52.91</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.75</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.38</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">MTL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">329</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">17.47</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.65</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">53.06</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.67</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">3.14</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">ANA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">376</td>
+<td class="gt_row gt_left" headers="counter_xg_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">13.91</td>
+<td class="gt_row gt_left" headers="counter_goal_spike_pct" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">19.55</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">55.09</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.61</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">2.93</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -875,7 +945,6 @@ ul.task-list li input[type="checkbox"] {
 <h1>Table with Rates Conditional on Counter Spike Occurring</h1>
 <div class="cell">
 <div class="cell-output-display">
-
 <div id="gaqqeihgvf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
@@ -1324,182 +1393,245 @@ ul.task-list li input[type="checkbox"] {
   border-bottom: 2px solid #ffffff00;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Team">Team</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="n">n</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Shot Rate Following Spike">Shot Rate Following Spike</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="xG Rate Following Spike">xG Rate Following Spike</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="font-family: 'Work Sans'; font-size: 14px; text-align: left; font-weight: 650; text-transform: uppercase;" scope="col" id="Goal Rate Following Spike">Goal Rate Following Spike</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">MIN</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">40</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">91.12</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.83</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.88</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NYR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">34</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">98.82</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.58</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">10.59</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">DAL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">45</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">95.67</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.55</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">10.00</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">FLA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">55</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">97.36</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.45</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.27</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">VGK</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">35</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">96.86</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.35</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.86</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CAR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">30</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">96.50</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.34</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.00</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NJD</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">42</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">95.36</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.26</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.07</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">WPG</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">42</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">94.29</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.23</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.43</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NSH</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">49</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">97.35</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.12</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.35</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">TOR</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">47</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">87.45</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.06</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.34</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">COL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">39</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">98.08</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.06</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.69</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">PIT</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">50</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">88.50</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.00</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">5.70</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">EDM</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">57</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">89.74</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.97</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.21</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">OTT</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">58</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">96.72</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.92</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.47</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CHI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">76.62</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.88</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.73</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">BUF</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">52</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">95.48</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.84</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.37</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">NYI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">47</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">96.06</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.81</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.34</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">SEA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">30</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">88.00</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.77</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.00</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">ARI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">38</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">72.63</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.75</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.89</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">ANA</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">90.81</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.65</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.30</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CGY</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">41</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">95.49</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.59</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.05</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">LAK</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">32</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">86.25</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.51</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.84</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">VAN</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">95.68</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.34</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.30</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">PHI</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">32</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">73.59</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.22</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">10.78</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">WSH</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">32</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">83.91</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.17</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.38</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">TBL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">42</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">89.64</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.08</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">9.29</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">SJS</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">39</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">82.69</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.90</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.15</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">MTL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">40</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">80.62</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.77</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.50</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">DET</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">32</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">88.59</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.76</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">6.09</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">CBJ</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">40</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">87.00</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.70</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">5.62</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">BOS</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">50</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">82.50</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.67</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.10</td></tr>
-    <tr><td headers="def_team" class="gt_row gt_left" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">STL</td>
-<td headers="n" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">37</td>
-<td headers="after_shot_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">84.73</td>
-<td headers="after_xg_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">7.53</td>
-<td headers="after_goal_rate" class="gt_row gt_left" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black;">8.11</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_col_headings">
+<th id="Team" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Team</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">n</th>
+<th id="Shot Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Shot Rate Following Spike</th>
+<th id="xG Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">xG Rate Following Spike</th>
+<th id="Goal Rate Following Spike" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="text-align: left; font-family: 'Work Sans'; font-size: 14px; font-weight: 650; text-transform: uppercase;" scope="col">Goal Rate Following Spike</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">MIN</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">40</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">91.12</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.83</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.88</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NYR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">34</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">98.82</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.58</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">10.59</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">DAL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">45</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">95.67</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.55</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">10.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">FLA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">55</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">97.36</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.45</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.27</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">VGK</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">35</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">96.86</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.35</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.86</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CAR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">30</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">96.50</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.34</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NJD</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">42</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">95.36</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.26</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.07</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">WPG</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">42</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">94.29</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.23</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.43</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NSH</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">49</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">97.35</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.12</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.35</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">TOR</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">47</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">87.45</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.06</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.34</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">COL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">39</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">98.08</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.06</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.69</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">PIT</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">50</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">88.50</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.00</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">5.70</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">EDM</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">57</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">89.74</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.97</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.21</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">OTT</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">58</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">96.72</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.92</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.47</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CHI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">76.62</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.88</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.73</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">BUF</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">52</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">95.48</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.84</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.37</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">NYI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">47</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">96.06</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.81</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.34</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">SEA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">30</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">88.00</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.77</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.00</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">ARI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">38</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">72.63</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.75</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.89</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">ANA</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">90.81</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.65</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.30</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CGY</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">41</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">95.49</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.59</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.05</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">LAK</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">32</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">86.25</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.51</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.84</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">VAN</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">95.68</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.34</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.30</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">PHI</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">32</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">73.59</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.22</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">10.78</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">WSH</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">32</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">83.91</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.17</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.38</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">TBL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">42</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">89.64</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.08</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">9.29</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">SJS</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">39</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">82.69</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.90</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.15</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">MTL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">40</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">80.62</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.77</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.50</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">DET</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">32</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">88.59</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.76</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">6.09</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">CBJ</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">40</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">87.00</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.70</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">5.62</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">BOS</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">50</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">82.50</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.67</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.10</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="def_team" style="border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">STL</td>
+<td class="gt_row gt_left" headers="n" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">37</td>
+<td class="gt_row gt_left" headers="after_shot_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">84.73</td>
+<td class="gt_row gt_left" headers="after_xg_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">7.53</td>
+<td class="gt_row gt_left" headers="after_goal_rate" style="border-left-width: 0.5px; border-left-style: solid; border-left-color: black; border-top-width: 1.5px; border-top-style: dotted; border-top-color: black">8.11</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1587,10 +1719,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1600,8 +1749,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1613,7 +1771,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1657,6 +1938,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1682,6 +1964,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1742,6 +2050,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 
