@@ -1,5 +1,6 @@
 project:
   type: website
+  pre-render: clean_webr.ts
 
 execute:
   freeze: auto
@@ -20,6 +21,8 @@ website:
     left: 
       - text: Skater EV RAPM Data
         href: skater_ev_rapm_tables.qmd
+      - text: Batted Ball Trajectory Tool
+        href: batted_ball_trajectory.qmd
 format:
   html:
     theme: minty
