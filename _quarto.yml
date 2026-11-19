@@ -1,6 +1,8 @@
 project:
   type: website
   pre-render: clean_webr.ts
+  resources:
+    - _headers
 
 execute:
   freeze: auto

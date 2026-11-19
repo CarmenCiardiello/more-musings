@@ -1,0 +1,12 @@
+# Netlify response headers.
+#
+# The Batted Ball Trajectory Tool runs R in the browser (Shinylive/webR).
+# webR loads the files under vfs/ (fonts, fontconfig, R library files) lazily
+# and sizes each one from its Content-Length header. Netlify compresses some of
+# these (for example font/ttf) with Brotli and drops Content-Length, so webR
+# sees them as empty files and every character in a plot is drawn as a missing
+# glyph box. Serving them as plain binary keeps Netlify from compressing them.
+# Update the shinylive version in the path if the extension is upgraded.
+/site_libs/quarto-contrib/shinylive-0.9.1/shinylive/webr/vfs/*
+  Content-Type: application/octet-stream
+  Cache-Control: public, max-age=3600, no-transform
